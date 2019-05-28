@@ -53,6 +53,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/store-new-user', ['as' => 'storeNewUser', 'uses' => 'AdminController@storeNewUser'])->middleware('admin_access');
 
     Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser']);
+
+    Route::get('/list-category', ['as' => 'listCategoryView', 'uses' => 'AdminController@listCategory']);
+
+    Route::get('/add-new-category', ['as' => 'addNewCategoryView', 'uses' => 'AdminController@addNewCategory']);
 });
 
 Route::get('/admin/', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);

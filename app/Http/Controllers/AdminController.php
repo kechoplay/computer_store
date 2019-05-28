@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\DanhMuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -116,5 +117,19 @@ class AdminController extends Controller
     {
         Admin::where(['id' => $id])->delete();
         return redirect()->route('listUserView');
+    }
+
+    public function listCategory()
+    {
+        # code...
+        $danhmuc = DanhMuc::all()->toArray();
+
+        return view('Admin.list_danh_muc', compact('danhmuc'));
+    }
+
+    public function addNewCategory()
+    {
+        $danhmuccha = DanhMuc::all()->where('parent_id', 0)->toArray();
+        return view('Admin.add_new_category', compact('danhmuccha'));
     }
 }
