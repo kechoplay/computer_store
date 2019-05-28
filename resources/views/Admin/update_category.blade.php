@@ -4,7 +4,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Thêm danh mục</h3>
+                <h3>Sửa danh mục</h3>
             </div>
 
             <div class="title_right">
@@ -32,8 +32,9 @@
                     </div>
                     <div class="x_content">
                         <form class="form-horizontal form-label-left" novalidate method="post"
-                              action="{{ route('storeNewCategory') }}">
+                              action="{{ route('editCategory') }}">
                             {{ csrf_field() }}
+                            <input type="hidden" value="{{ $category->id }}" name="id">
 
                             <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
                                 <span>{{ $errors->first('error') ? $errors->first('error') : '' }}</span>
@@ -44,7 +45,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="categoryName" class="form-control col-md-7 col-xs-12" name="cate_name"
-                                           placeholder="" required="required" type="text">
+                                           placeholder="" required="required" type="text" value="{{ $category->cat_name }}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -53,9 +54,9 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="parentId" name="parentId" class="form-control col-md-7 col-xs-12">
-                                        <option value="0">---Chọn danh mục cha---</option>
+                                        <option value="0" {{ $category->parent_id == 0 ? 'selected' : '' }}>---Chọn danh mục cha---</option>
                                         @foreach($danhmuccha as $danhmuc)
-                                            <option value="{{ $danhmuc['id'] }}">{{ $danhmuc['cat_name'] }}</option>
+                                            <option value="{{ $danhmuc['id'] }}" {{ $category->parent_id == $danhmuc['id'] ? 'selected' : '' }}>{{ $danhmuc['cat_name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -66,7 +67,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="order" type="number" name="sortOrder" class="form-control col-md-7 col-xs-12"
-                                           required="required">
+                                           required="required" value="{{ $category->sort_order }}">
                                 </div>
                             </div>
                             <div class="item form-group">
@@ -75,12 +76,12 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <label class="control-label">
-                                    Hiển thị:
-                                    <input type="radio" class="flat" name="status" id="status1" value="1" checked
-                                           required/>
-                                    Ẩn:
-                                    <input type="radio" class="flat" name="status" id="status0" value="0"/>
-                                        </label>
+                                        Hiển thị:
+                                        <input type="radio" class="flat" name="status" id="status1" value="1" {{ $category->cat_status == 1 ? 'checked' : '' }}
+                                               required/>
+                                        Ẩn:
+                                        <input type="radio" class="flat" name="status" id="status0" value="0" {{ $category->cat_status == 0 ? 'checked' : '' }}/>
+                                    </label>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -99,5 +100,5 @@
 
 @push('js')
     <!-- validator -->
-    <script src="../vendors/validator/validator.js"></script>
+    <script src="/vendors/validator/validator.js"></script>
 @endpush

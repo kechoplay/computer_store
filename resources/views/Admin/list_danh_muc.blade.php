@@ -40,7 +40,10 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-{{--                        <a href="{{ route('addNewCategoryView') }}"><button type="button" class="btn btn-primary">Thêm danh muc</button></a>--}}
+                        <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
+                            <span>{{ $errors->first('error') ? $errors->first('error') : '' }}</span>
+                        </div>
+                        <a href="{{ route('addNewCategoryView') }}"><button type="button" class="btn btn-primary">Thêm danh muc</button></a>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
@@ -54,12 +57,14 @@
                             <tbody>
                             @foreach($danhmuc as $ca)
                                 <tr>
-                                    <td>{{ $ca['cat_name'] }}</td>
-                                    <td>{{ $ca['sort_order'] }}</td>
-                                    <td>{{ $ca['parent_id'] }}</td>
-                                    <td>{{ $ca['cat_status'] == 1 ? "Hien thi" : "An" }}</td>
+                                    <td>{{ $ca->cat_name }}</td>
+                                    <td>{{ $ca->sort_order }}</td>
+                                    <td>{{ $ca->parent ? $ca->parent->cat_name : '' }}</td>
+                                    <td>{{ $ca->cat_status == 1 ? "Hien thi" : "An" }}</td>
                                     <td>
-                                        {{--<a href="{{ route('deleteUser', ['id' => $ca['id']]) }}" onclick="return confirm('Bạn có chắc muốn xóa không?')"><button type="button" class="btn btn-danger">Xóa</button></a>--}}
+                                        <a href="{{ route('deleteCategory', ['id' => $ca->id]) }}" onclick="return confirm('Bạn có chắc muốn xóa không?')"><button type="button" class="btn btn-danger">Xóa</button></a>
+                                        <br>
+                                        <a href="{{ route('updateCategoryView', ['id' => $ca->id]) }}" ><button type="button" class="btn btn-primary">Cập nhật</button></a>
                                     </td>
                                 </tr>
                             @endforeach

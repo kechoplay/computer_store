@@ -10,23 +10,23 @@
     <title>Computer Store</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -78,11 +78,13 @@
                                 </li>
                             @endif
                             <li>
-                                <a><i class="fa fa-desktop"></i> Quan ly danh muc <span
-                                            class="fa fa-chevron-down"></span>
+                                <a>
+                                    <i class="fa fa-desktop"></i>
+                                    Quan lý danh mục <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{ route('listCategoryView') }}">Danh sach danh muc</a></li>
+                                    <li><a href="{{ route('listCategoryView') }}">Danh sách danh mục</a></li>
+                                    <li><a href="{{ route('addNewCategoryView') }}">Thêm danh mục</a></li>
                                     {{--<li><a href="media_gallery.html">Media Gallery</a></li>--}}
 {{--                                    <li><a href="typography.html">Typography</a></li>--}}
 {{--                                    <li><a href="icons.html">Icons</a></li>--}}

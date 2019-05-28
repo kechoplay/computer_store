@@ -57,6 +57,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('/list-category', ['as' => 'listCategoryView', 'uses' => 'AdminController@listCategory']);
 
     Route::get('/add-new-category', ['as' => 'addNewCategoryView', 'uses' => 'AdminController@addNewCategory']);
+
+    Route::post('/store-new-category', ['as' => 'storeNewCategory', 'uses' => 'AdminController@storeNewCategory']);
+
+    Route::get('/update-category/{id}', ['as' => 'updateCategoryView', 'uses' => 'AdminController@updateCategory']);
+
+    Route::post('/edit-category', ['as' => 'editCategory', 'uses' => 'AdminController@editCategory']);
+
+    Route::get('/delete-category/{id}', ['as' => 'deleteCategory', 'uses' => 'AdminController@deleteCategory']);
 });
 
 Route::get('/admin/', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
