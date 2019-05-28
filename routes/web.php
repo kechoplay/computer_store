@@ -41,10 +41,26 @@ Route::get('/', function () {
 //    }]);
 //});
 
-Route::group(['prefix' => 'admin', 'middleware' => []], function () {
-    Route::get('/', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
+Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function () {
+    Route::get('/index', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
 
-    Route::get('', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
+    Route::post('/update-profile', ['as' => 'updateProfile', 'uses' => 'AdminController@storeProfile']);
 
-    Route::get('/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
+    Route::get('/list-user', ['as' => 'listUserView', 'uses' => 'AdminController@listUser'])->middleware('admin_access');
+
+    Route::get('/add-new-user', ['as' => 'addNewUserView', 'uses' => 'AdminController@addNewUserView'])->middleware('admin_access');
+
+    Route::post('/store-new-user', ['as' => 'storeNewUser', 'uses' => 'AdminController@storeNewUser'])->middleware('admin_access');
+
+    Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser']);
 });
+
+Route::get('/admin/', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
+
+Route::get('/admin', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
+
+Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
+
+Route::post('/admin/login', ['as' => 'postLogin', 'uses' => 'AuthController@login']);
+
+Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
