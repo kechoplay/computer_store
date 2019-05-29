@@ -50,7 +50,7 @@
                                     {{--                                           data-validate-length-range="6" data-validate-words="2" name="name"--}}
                                     {{--                                           placeholder="Kiều Sơn Tùng" required="required" type="text">--}}
                                     <input id="username" class="form-control col-md-7 col-xs-12" name="username"
-                                           placeholder="Kiều Sơn Tùng" required="required" type="text">
+                                           placeholder="" required="required" type="text">
                                 </div>
                             </div>
                             <div class="item form-group">
