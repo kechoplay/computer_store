@@ -80,7 +80,7 @@
                             <li>
                                 <a>
                                     <i class="fa fa-desktop"></i>
-                                    Quan lý danh mục <span class="fa fa-chevron-down"></span>
+                                    Quản lý danh mục <span class="fa fa-chevron-down"></span>
                                 </a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ route('listCategoryView') }}">Danh sách danh mục</a></li>
@@ -95,12 +95,12 @@
 {{--                                    <li><a href="calendar.html">Calendar</a></li>--}}
                                 </ul>
                             </li>
-{{--                            <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>--}}
-{{--                                <ul class="nav child_menu">--}}
-{{--                                    <li><a href="tables.html">Tables</a></li>--}}
-{{--                                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
+                            <li><a><i class="fa fa-table"></i> Quản lý sản phẩm <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('productList') }}">Sản phẩm</a></li>
+                                    <li><a href="{{ route('createProductView') }}">Thêm sản phẩm</a></li>
+                                </ul>
+                            </li>
 {{--                            <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span--}}
 {{--                                            class="fa fa-chevron-down"></span></a>--}}
 {{--                                <ul class="nav child_menu">--}}

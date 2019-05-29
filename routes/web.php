@@ -44,32 +44,42 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function () {
     Route::get('/index', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
 
+    Route::get('/', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
+
+    Route::get('', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
+
     Route::post('/update-profile', ['as' => 'updateProfile', 'uses' => 'AdminController@storeProfile']);
 
-    Route::get('/list-user', ['as' => 'listUserView', 'uses' => 'AdminController@listUser'])->middleware('admin_access');
+    Route::get('/list-user', ['as' => 'listUserView', 'uses' => 'AdminController@listUser'])->middleware('super_admin');
 
-    Route::get('/add-new-user', ['as' => 'addNewUserView', 'uses' => 'AdminController@addNewUserView'])->middleware('admin_access');
+    Route::get('/add-new-user', ['as' => 'addNewUserView', 'uses' => 'AdminController@addNewUserView'])->middleware('super_admin');
 
-    Route::post('/store-new-user', ['as' => 'storeNewUser', 'uses' => 'AdminController@storeNewUser'])->middleware('admin_access');
+    Route::post('/store-new-user', ['as' => 'storeNewUser', 'uses' => 'AdminController@storeNewUser'])->middleware('super_admin');
 
-    Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser']);
+    Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser'])->middleware('super_admin');
 
-    Route::get('/list-category', ['as' => 'listCategoryView', 'uses' => 'AdminController@listCategory']);
+    Route::get('/list-category', ['as' => 'listCategoryView', 'uses' => 'DanhMucController@listCategory']);
 
-    Route::get('/add-new-category', ['as' => 'addNewCategoryView', 'uses' => 'AdminController@addNewCategory']);
+    Route::get('/add-new-category', ['as' => 'addNewCategoryView', 'uses' => 'DanhMucController@addNewCategory']);
 
-    Route::post('/store-new-category', ['as' => 'storeNewCategory', 'uses' => 'AdminController@storeNewCategory']);
+    Route::post('/store-new-category', ['as' => 'storeNewCategory', 'uses' => 'DanhMucController@storeNewCategory']);
 
-    Route::get('/update-category/{id}', ['as' => 'updateCategoryView', 'uses' => 'AdminController@updateCategory']);
+    Route::get('/update-category/{id}', ['as' => 'updateCategoryView', 'uses' => 'DanhMucController@updateCategory']);
 
-    Route::post('/edit-category', ['as' => 'editCategory', 'uses' => 'AdminController@editCategory']);
+    Route::post('/edit-category', ['as' => 'editCategory', 'uses' => 'DanhMucController@editCategory']);
 
-    Route::get('/delete-category/{id}', ['as' => 'deleteCategory', 'uses' => 'AdminController@deleteCategory']);
+    Route::get('/delete-category/{id}', ['as' => 'deleteCategory', 'uses' => 'DanhMucController@deleteCategory']);
+
+    Route::get('/list-product', ['as' => 'productList', 'uses' => 'SanPhamController@index']);
+
+    Route::get('create-new-product', ['as' => 'createProductView', 'uses' => 'SanPhamController@createProduct']);
+
+    Route::post('store-new-product', ['as' => 'storeNewProduct', 'uses' => 'SanPhamController@storeNewProduct']);
+
+    Route::get('update/{MaSP}', ['as' => 'quanlysanpham.update', 'uses' => 'SanPhamController@update']);
+
+    Route::post('update/{MaSP}', ['as' => 'quanlysanpham.sua', 'uses' => 'SanPhamController@sua']);
 });
-
-Route::get('/admin/', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
-
-Route::get('/admin', ['as' => 'login', 'uses' => 'AuthController@checkLogin']);
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
 

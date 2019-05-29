@@ -58,6 +58,6 @@ class AuthController extends Controller
     {
         $request->session()->flush();
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('loginView');
     }
 }

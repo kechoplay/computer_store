@@ -26,4 +26,9 @@ class DanhMuc extends Model
     {
         return $this->belongsTo('App\Admin', 'created_by');
     }
+
+    public function sanpham()
+    {
+        return $this->hasMany('App\SanPham', 'DM');
+    }
 }
