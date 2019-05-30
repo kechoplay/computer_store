@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DanhMuc;
 use App\SanPham;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Webpatser\Uuid\Uuid;
@@ -59,6 +60,49 @@ class SanPhamController extends Controller
 
         SanPham::create($data);
 
+        return redirect()->route('productList');
+    }
+
+    public function editProduct($id)
+    {
+        $sanpham = SanPham::find($id);
+        $sanpham->start_date = Carbon::createFromTimestamp(strtotime($sanpham->start_date))->format('Y-m-d');
+        $danhmuc = DanhMuc::all();
+        return view('Admin.update_product', compact('sanpham', 'danhmuc'));
+    }
+
+    public function update(Request $sp, $id)
+    {
+        $sanpham = SanPham::find($id);
+        $sanpham->product_name = $sp->TenSP;
+        $sanpham->cat_id = $sp->MaDM;
+        $sanpham->price = $sp->Gia;
+        $sanpham->note = $sp->GhiChu;
+        $sanpham->description = $sp->MoTa;
+        $sanpham->color = $sp->MauSac;
+        $sanpham->size = $sp->KichThuoc;
+        $sanpham->quantity = $sp->SoLuong;
+        $sanpham->warranty = $sp->ThoiHanBH;
+        $sanpham->start_date = $sp->NgaySX;
+        $sanpham->RAM = $sp->RAM;
+        $sanpham->HDD = $sp->HDD;
+        $sanpham->is_new = $sp->SPNew;
+
+        if ($sp->has('HinhAnh')) {
+            $Anh = $sp->file('HinhAnh');
+            // Tạo tên ảnh là UUID duy nhất, tránh trùng tên ảnh cũ
+            $filename = Uuid::generate()->string . '.png';
+            // Đặt đường dẫn ảnh
+            $path = "/files/image/" . $filename;
+            // cop ảnh luu vao ht
+            Image::make($Anh)->save(public_path($path));
+            // Xóa ảnh cũ ( nếu có )
+            if (file_exists(public_path($sanpham->image)))
+                unlink(public_path($sanpham->image));
+            // Cập nhật đường dẫn ảnh mới vào sản phẩm
+            $sanpham->image = $path;
+        }
+        $sanpham->save();
         return redirect()->route('productList');
     }
 }

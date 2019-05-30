@@ -13,7 +13,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Quản lý sản phẩm</h3>
+                <h3>Quản lý khuyễn mãi</h3>
             </div>
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -33,7 +33,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Quản lý sản phẩm </h2>
+                        <h2>Danh sách khuyến mãi </h2>
                         <div class="clearfix"></div>
                         <a href="{{route('createProductView')}}">
                             <button type="button" class="btn btn-info">Tạo mới</button>
@@ -46,27 +46,28 @@
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Ảnh</th>
+                                <th>Mã khuyến mãi</th>
+                                <th>Thời gian bắt đầu</th>
+                                <th>Thời gian kết thúc</th>
+                                <th>Giảm giá</th>
                                 <th>Tên sản phẩm</th>
-                                <th>Tên danh mục</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
-                                <th>Tùy chọn</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sanpham as $sp)
+                            @foreach($khuyenmai as $km)
                                 <tr>
+                                    <td>{{ $km->id }}</td>
+                                    <td>{{ $km->start_time }}</td>
+                                    <td>{{ $km->end_time }}</td>
+                                    <td>{{ $km->sale }}</td>
+                                    <td>{{ $km->sanpham->product_name }}</td>
                                     <td>
-                                        <img src="{{ $sp->image }}" width="100px">
-                                    </td>
-                                    <td style="max-width:100px;">{{ $sp->product_name }}</td>
-                                    <td>{{ $sp->danhmuc->cat_name }} </td>
-                                    <td>{{ $sp->quantity }}</td>
-                                    <td>{{ number_format($sp->price) }}</td>
-                                    <td>
-                                        <a href="{{ route('editProductView', ['id' => $sp->id]) }}">
+                                        <a href="{{ route('updateSaleView',['id' => $km->id]) }}">
                                             <button class="btn btn-primary">Sửa</button>
+                                        </a>
+                                        <a href="{{ route('deleteSale',['id' => $km->id]) }}" onclick="return confirm('bạn có muốn xóa?')">
+                                            <button class="btn btn-danger">Xóa</button>
                                         </a>
                                     </td>
                                 </tr>

@@ -31,7 +31,7 @@
                     <div class="x_content">
                         <br/>
                         <form method="post" data-parsley-validate enctype="multipart/form-data"
-                              class="form-horizontal form-label-left" action="{{ route('storeNewProduct') }}">
+                              class="form-horizontal form-label-left">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TenSP">Tên sản phẩm
@@ -39,7 +39,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="TenSP" name="TenSP" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->product_name}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -48,16 +48,18 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="number" id="Gia" name="Gia" min="0" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->price}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="HinhAnh">Hình ảnh
-                                    <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="file" id="HinhAnh" name="HinhAnh" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                    <input type="file" id="HinhAnh" name="HinhAnh"
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->image}}">
+                                    <p>
+                                        <img src="{{$sanpham->image}}" width="100px" alt="">
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -66,7 +68,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea rows="7" id="GhiChu" name="GhiChu" required="required"
-                                              class="form-control col-md-7 col-xs-12"></textarea>
+                                              class="form-control col-md-7 col-xs-12">{{$sanpham->note}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -75,7 +77,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea rows="7" id="MoTa" name="MoTa" required="required"
-                                              class="form-control col-md-7 col-xs-12"></textarea>
+                                              class="form-control col-md-7 col-xs-12">{{$sanpham->description}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,9 +86,8 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="MaDM" class="form-control">
-                                        <option selected="">-- Chọn Danh Mục Sản Phẩm --</option>
                                         @foreach($danhmuc as $dm)
-                                            <option value="{{$dm->id}}"> {{ $dm->cat_name}}</option>
+                                            <option {{ $sanpham->cat_id == $dm->id ? "selected" : '' }} value="{{$dm->id}}">{{$dm->cat_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -96,9 +97,9 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group col-md-7 col-xs-12">
+                                    <div class="form-group col-md-7 col-xs-12" value="{{$sanpham->start_date}}">
                                         <div class='input-group date' id='NgaySX'>
-                                            <input type='text' name="NgaySX" class="form-control"/>
+                                            <input type='text' name="NgaySX" class="form-control" required/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -112,7 +113,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="MauSac" name="MauSac" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->color}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -121,7 +122,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="KichThuoc" name="KichThuoc" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->size}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -130,7 +131,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="number" id="SoLuong" name="SoLuong" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->quantity}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -140,7 +141,8 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="number" id="ThoiHanBH" name="ThoiHanBH" min="0" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="{{$sanpham->warranty}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,7 +150,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="ram" name="RAM" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->RAM}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -156,11 +158,11 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="hdd" name="HDD" required="required"
-                                           class="form-control col-md-7 col-xs-12">
+                                           class="form-control col-md-7 col-xs-12" value="{{$sanpham->HDD}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hdd">Sản phẩm mới
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hdd">Sản phẩm
                                 </label>
                                 <div class="radio">
                                     <label>
@@ -185,7 +187,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <a href="{{ route('productList') }}" class="btn btn-primary">Hủy</a>
                                     <button class="btn btn-primary" type="reset">Đặt lại</button>
-                                    <button type="submit" class="btn btn-success">Tạo mới</button>
+                                    <button type="submit" class="btn btn-success">Lưu lại</button>
                                 </div>
                             </div>
                         </form>
@@ -202,6 +204,7 @@
     <script>
         $('#NgaySX').datetimepicker({
             format: 'YYYY-MM-DD',
+            defaultDate: "{{$sanpham->start_date}}"
         });
     </script>
 @endpush

@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
 
     Route::post('/update-profile', ['as' => 'updateProfile', 'uses' => 'AdminController@storeProfile']);
-
+// admin
     Route::get('/list-user', ['as' => 'listUserView', 'uses' => 'AdminController@listUser'])->middleware('super_admin');
 
     Route::get('/add-new-user', ['as' => 'addNewUserView', 'uses' => 'AdminController@addNewUserView'])->middleware('super_admin');
@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/store-new-user', ['as' => 'storeNewUser', 'uses' => 'AdminController@storeNewUser'])->middleware('super_admin');
 
     Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser'])->middleware('super_admin');
-
+// danh muc
     Route::get('/list-category', ['as' => 'listCategoryView', 'uses' => 'DanhMucController@listCategory']);
 
     Route::get('/add-new-category', ['as' => 'addNewCategoryView', 'uses' => 'DanhMucController@addNewCategory']);
@@ -69,16 +69,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/edit-category', ['as' => 'editCategory', 'uses' => 'DanhMucController@editCategory']);
 
     Route::get('/delete-category/{id}', ['as' => 'deleteCategory', 'uses' => 'DanhMucController@deleteCategory']);
-
+// san pham
     Route::get('/list-product', ['as' => 'productList', 'uses' => 'SanPhamController@index']);
 
-    Route::get('create-new-product', ['as' => 'createProductView', 'uses' => 'SanPhamController@createProduct']);
+    Route::get('/create-new-product', ['as' => 'createProductView', 'uses' => 'SanPhamController@createProduct']);
 
-    Route::post('store-new-product', ['as' => 'storeNewProduct', 'uses' => 'SanPhamController@storeNewProduct']);
+    Route::post('/store-new-product', ['as' => 'storeNewProduct', 'uses' => 'SanPhamController@storeNewProduct']);
 
-    Route::get('update/{MaSP}', ['as' => 'quanlysanpham.update', 'uses' => 'SanPhamController@update']);
+    Route::get('/edit-product/{id}', ['as' => 'editProductView', 'uses' => 'SanPhamController@editProduct']);
 
-    Route::post('update/{MaSP}', ['as' => 'quanlysanpham.sua', 'uses' => 'SanPhamController@sua']);
+    Route::post('/edit-product/{id}', ['as' => 'editProduct', 'uses' => 'SanPhamController@update']);
+// khuyen mai
+    Route::get('/sale-list', ['as' => 'saleListView', 'uses' => 'KhuyenMaiController@index']);
+
+    route::get('create', ['as' => 'quanlykhuyenmai.create', 'uses' => 'KhuyenMaiController@create']);
+
+    route::post('create', ['as' => 'quanlykhuyenmai.store', 'uses' => 'KhuyenMaiController@them']);
+
+    Route::get('/update-sale/{id}', ['as' => 'updateSaleView', 'uses' => 'KhuyenMaiController@update']);
+
+    Route::post('/update-sale/{id}', ['as' => 'updateSale', 'uses' => 'KhuyenMaiController@sua']);
+
+    Route::get('/delete-sale/{id}', ['as' => 'deleteSale', 'uses' => 'KhuyenMaiController@delete']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
