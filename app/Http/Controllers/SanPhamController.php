@@ -11,7 +11,8 @@ use Webpatser\Uuid\Uuid;
 class SanPhamController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $sanpham = SanPham::all();
         return view('Admin.list_product', compact('sanpham'));
     }
@@ -22,12 +23,13 @@ class SanPhamController extends Controller
         return view('Admin.create_new_product', compact('danhmuc'));
     }
 
-    public function storeNewProduct(Request $sp){
+    public function storeNewProduct(Request $sp)
+    {
         $path = '';
-        if($sp->has('HinhAnh')){
+        if ($sp->has('HinhAnh')) {
             $Anh = $sp->file('HinhAnh');
             // Tạo tên ảnh là UUID duy nhất, tránh trùng tên ảnh cũ
-            $filename = Uuid::generate()->string.'.png';
+            $filename = Uuid::generate()->string . '.png';
             // Đặt đường dẫn ảnh
             $path = "/files/image/";
             if (!is_dir($path))
@@ -37,22 +39,25 @@ class SanPhamController extends Controller
             Image::make($Anh)->save(public_path($path) . $filename);
         }
 
-        $sanpham = new SanPham();
-        $sanpham->TenSP = $sp->TenSP;
-        $sanpham->DM= $sp->MaDM;
-        $sanpham->Gia = $sp->Gia;
-        $sanpham->HinhAnh =  $path . $filename ;
-        $sanpham->GhiChu = $sp->GhiChu;
-        $sanpham->MoTa = $sp->MoTa;
-        $sanpham->MauSac = $sp->MauSac;
-        $sanpham->KichThuoc = $sp->KichThuoc;
-        $sanpham->SoLuong = $sp->SoLuong;
-        $sanpham->ThoiHanBH = $sp->ThoiHanBH;
-        $sanpham->NgaySX = $sp->NgaySX;
-        $sanpham->RAM = $sp->RAM;
-        $sanpham->HDD = $sp->HDD;
-        $sanpham->SPNew = $sp->SPNew;
-        $sanpham->save();
+        // lưu dữ liệu vào database
+        $data = [
+            'product_name' => $sp->TenSP,
+            'cat_id' => $sp->MaDM,
+            'price' => $sp->Gia,
+            'image' => $path . $filename,
+            'note' => $sp->GhiChu,
+            'description' => $sp->MoTa,
+            'color' => $sp->MauSac,
+            'size' => $sp->KichThuoc,
+            'quantity' => $sp->SoLuong,
+            'warranty' => $sp->ThoiHanBH,
+            'start_date' => $sp->NgaySX,
+            'RAM' => $sp->RAM,
+            'HDD' => $sp->HDD,
+            'is_new' => $sp->SPNew,
+        ];
+
+        SanPham::create($data);
 
         return redirect()->route('productList');
     }

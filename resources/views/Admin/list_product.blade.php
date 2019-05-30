@@ -1,5 +1,14 @@
 @extends('layout.admin.main')
 
+@push('css')
+    <!-- Datatables -->
+    <link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+@endpush()
+
 @section('content')
     <div class="">
         <div class="page-title">
@@ -37,42 +46,24 @@
                                cellspacing="0" width="100%">
                             <thead>
                             <tr>
+                                <th>Ảnh</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Tên danh mục</th>
                                 <th>Số lượng</th>
-                                <th>Ảnh</th>
                                 <th>Giá</th>
-                                <!-- <th>Ghi chú</th>
-                                <th>Thời gian bảo hành</th>
-                                <th>RAM</th>
-                                <th>Ổ cứng</th>
-                                <th>Sản phẩm mới</th>
-                                <th>Chi tiết</th> -->
-                                <th>Sửa sản phẩm</th>
+                                <th>Tùy chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($sanpham as $sp)
                                 <tr>
-                                    <td style="max-width:100px;">{{$sp->TenSP}}</td>
-                                    <td>{{$sp->danhmuc['cat_name']}} </td>
-                                    <td>{{$sp->SoLuong}}</td>
                                     <td>
                                         <img src="{{$sp->HinhAnh}}" width="100px">
                                     </td>
+                                    <td style="max-width:100px;">{{$sp->TenSP}}</td>
+                                    <td>{{$sp->danhmuc['cat_name']}} </td>
+                                    <td>{{$sp->SoLuong}}</td>
                                     <td>{{number_format($sp->Gia)}}</td>
-                                <!-- <td style="max-width:200px;">{{$sp->GhiChu}}</td>
-                        <td>{{number_format($sp->ThoiHanBH)}}</td>
-                        <td>{{$sp->RAM}}</td>
-                        <td>{{$sp->HDD}}</td>
-                        @if(($sp->SPNew)==0)
-                                    <td>{{'Sản phẩm mới'}}</td>
-                        @else
-                                    <td>{{'Sản phẩm cũ'}}</td>
-                        @endif
-                                        <td>
-                                            <a href="">Xem chi tiết</a>
-                                        </td> -->
                                     <td>
                                         <a href="{{route('quanlysanpham.update',['MaSP'=>$sp->MaSP])}}"
                                            class="label label-success" title="Sửa">Sửa</a>
@@ -87,3 +78,19 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="/vendors/jszip/dist/jszip.min.js"></script>
+@endpush()
