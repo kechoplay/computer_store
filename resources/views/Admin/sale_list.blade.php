@@ -35,7 +35,7 @@
                     <div class="x_title">
                         <h2>Danh sách khuyến mãi </h2>
                         <div class="clearfix"></div>
-                        <a href="{{route('createProductView')}}">
+                        <a href="{{route('createNewSaleView')}}">
                             <button type="button" class="btn btn-info">Tạo mới</button>
                         </a>
 

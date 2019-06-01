@@ -82,13 +82,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
 // khuyen mai
     Route::get('/sale-list', ['as' => 'saleListView', 'uses' => 'KhuyenMaiController@index']);
 
-    route::get('create', ['as' => 'quanlykhuyenmai.create', 'uses' => 'KhuyenMaiController@create']);
+    route::get('create-new-sale', ['as' => 'createNewSaleView', 'uses' => 'KhuyenMaiController@create']);
 
-    route::post('create', ['as' => 'quanlykhuyenmai.store', 'uses' => 'KhuyenMaiController@them']);
+    route::post('store-new-sale', ['as' => 'storeNewSale', 'uses' => 'KhuyenMaiController@store']);
 
     Route::get('/update-sale/{id}', ['as' => 'updateSaleView', 'uses' => 'KhuyenMaiController@update']);
 
-    Route::post('/update-sale/{id}', ['as' => 'updateSale', 'uses' => 'KhuyenMaiController@sua']);
+    Route::post('/update-sale/{id}', ['as' => 'updateSale', 'uses' => 'KhuyenMaiController@edit']);
 
     Route::get('/delete-sale/{id}', ['as' => 'deleteSale', 'uses' => 'KhuyenMaiController@delete']);
 });

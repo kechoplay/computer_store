@@ -16,4 +16,9 @@ class SanPham extends Model
     {
         return $this->belongsTo('App\DanhMuc', 'cat_id');
     }
+
+    public function khuyenmai()
+    {
+        return $this->hasMany('App\KhuyenMai', 'product_id', 'id');
+    }
 }

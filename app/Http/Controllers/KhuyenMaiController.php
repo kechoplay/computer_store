@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\KhuyenMai;
+use App\SanPham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class KhuyenMaiController extends Controller
 {
@@ -16,37 +18,40 @@ class KhuyenMaiController extends Controller
 
     public function create()
     {
-        $danhsachsanpham = quanlysanpham::all();
-        return view('admin/quanlykhuyenmai/create', compact('danhsachsanpham'));
+        $danhsachsanpham = SanPham::all();
+        return view('Admin.create_new_sale', compact('danhsachsanpham'));
     }
 
-    public function them(Request $km)
+    public function store(Request $request)
     {
-        $khuyenmai = new quanlykhuyenmai();
-        $khuyenmai->ThoiGianBD = $km->ThoiGianBD;
-        $khuyenmai->ThoiGianKT = $km->ThoiGianKT;
-        $khuyenmai->Giam = $km->Giam;
-        $khuyenmai->MaSP = $km->MaSP;
-        $khuyenmai->save();
-        return redirect('admin/quanlykhuyenmai/list');
+        KhuyenMai::where('product_id', $request->MaSP)->update(['status' => 0]);
+        KhuyenMai::create([
+            'product_id' => $request->MaSP,
+            'start_time' => $request->ThoiGianBD,
+            'end_time' => $request->ThoiGianKT,
+            'sale' => $request->Giam,
+            'status' => 1
+        ]);
+
+        return redirect()->back();
     }
 
-    public function update($MaKM)
+    public function update($id)
     {
-        $khuyenmai = quanlykhuyenmai::find($MaKM);
-        $danhsachsanpham = quanlysanpham::all();
-        return view('admin/quanlykhuyenmai/update', compact('khuyenmai', 'danhsachsanpham'));
+        $khuyenmai = KhuyenMai::find($id);
+        $danhsachsanpham = SanPham::all();
+        return view('Admin.update_sale', compact('khuyenmai', 'danhsachsanpham'));
     }
 
-    public function sua(Request $km, $MaKM)
+    public function edit(Request $request, $id)
     {
-        $khuyenmai = quanlykhuyenmai::find($MaKM);
+        $khuyenmai = KhuyenMai::find($id);
         // $khuyenmai = new quanlykhuyenmai(); // New là tạo mới
-        $khuyenmai->TrangThai = $km->TrangThai == 'on';
-        $khuyenmai->ThoiGianBD = $km->ThoiGianBD;
-        $khuyenmai->ThoiGianKT = $km->ThoiGianKT;
-        $khuyenmai->Giam = $km->Giam;
-        $khuyenmai->MaSP = $km->MaSP;
+        $khuyenmai->TrangThai = $request->TrangThai == 'on';
+        $khuyenmai->ThoiGianBD = $request->ThoiGianBD;
+        $khuyenmai->ThoiGianKT = $request->ThoiGianKT;
+        $khuyenmai->Giam = $request->Giam;
+        $khuyenmai->MaSP = $request->MaSP;
         $khuyenmai->save();
         return redirect('admin/quanlykhuyenmai/list');
     }
