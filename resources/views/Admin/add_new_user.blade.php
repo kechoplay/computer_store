@@ -4,7 +4,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Thêm thành viên</h3>
+                <h3>Thêm tài khoản</h3>
             </div>
 
             <div class="title_right">
@@ -24,7 +24,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Thêm thành viên</h2>
+                        <h2>Thêm tài khoản</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         </ul>
@@ -34,7 +34,7 @@
                         <form class="form-horizontal form-label-left" novalidate method="post"
                               action="{{ route('storeNewUser') }}">
                             {{ csrf_field() }}
-                            <span class="section">Thông tin thành viên</span>
+                            <span class="section">Thông tin tài khoản</span>
 
                             <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
                                 <span>{{ $errors->first('username') ? $errors->first('username') : '' }}</span>

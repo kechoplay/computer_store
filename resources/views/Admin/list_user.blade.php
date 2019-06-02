@@ -13,7 +13,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Thành viên</h3>
+                <h3>Tài khoản</h3>
             </div>
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -33,7 +33,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Thành viên</h2>
+                        <h2>Tài khoản</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         </ul>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="x_content">
                         <a href="{{ route('addNewUserView') }}">
-                            <button type="button" class="btn btn-primary">Thêm thành viên</button>
+                            <button type="button" class="btn btn-primary">Thêm tài khoản</button>
                         </a>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                                cellspacing="0" width="100%">
@@ -71,10 +71,12 @@
                                     <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($user['birthday']))->format('Y-m-d') }}</td>
                                     <td>{{ $user['gender'] == 1 ? 'Nam' : 'Nữ' }}</td>
                                     <td>{{ $user['last_login_time'] ? \Carbon\Carbon::createFromTimestamp(strtotime($user['last_login_time']))->format('Y-m-d H:i:s') : 0}}</td>
-                                    <th><a href="{{ route('deleteUser', ['id' => $user['id']]) }}"
+                                    <td>
+                                        <a href="{{ route('deleteUser', ['id' => $user['id']]) }}"
                                            onclick="return confirm('Bạn có chắc muốn xóa không?')">
                                             <button type="button" class="btn btn-danger">Xóa</button>
-                                        </a></th>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
