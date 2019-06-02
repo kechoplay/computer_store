@@ -6,3 +6,10 @@ function getDanhMuc()
 
     return $danhmuc;
 }
+
+function checkSale($idProduct)
+{
+    $khuyenmai = \App\KhuyenMai::where('product_id', $idProduct)->first();
+
+    return $khuyenmai;
+}

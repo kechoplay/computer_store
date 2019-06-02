@@ -72,17 +72,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="header_top">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt=""/></a>
+                <a href="index.html"><img src="/images/logo.png" alt=""/></a>
             </div>
             <ul class="shopping_grid">
-                <a href="#">
-                    <li>Join</li>
-                </a>
                 <a href="login.html">
-                    <li>Sign In</li>
+                    <li>Đăng nhập</li>
                 </a>
                 <a href="#">
-                    <li><span class="m_1">Shopping Bag</span>&nbsp;&nbsp;(0) &nbsp;<img src="images/bag.png" alt=""/>
+                    <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;(0) &nbsp;<img src="/images/bag.png" alt=""/>
                     </li>
                 </a>
                 <div class="clearfix"></div>
@@ -94,8 +91,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <a class="toggleMenu" href="#">Menu</a>
             <ul class="nav">
-                <li class="active"><a href="index.html" data-hover="Home">Home</a></li>
-                <li><a href="about.html" data-hover="About Us">About Us</a></li>
+                <li class="active"><a href="{{ route('index') }}" data-hover="Home">Trang chủ</a></li>
+                <li><a href="about.html" data-hover="About Us">Danh sách sản phẩm</a></li>
                 <li><a href="careers.html" data-hover="Careers">Careers</a></li>
                 <li><a href="contact.html" data-hover="Contact Us">Contact Us</a></li>
                 <li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>
@@ -133,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="column_center">
     <div class="container">
         <div class="search">
-            <div class="stay">Search Product</div>
+            <div class="stay">Tìm kiếm sản phẩm</div>
             <div class="stay_right">
                 <input type="text" value="" onfocus="this.value = '';"
                        onblur="if (this.value == '') {this.value = '';}">
@@ -155,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             @foreach($danhmuc as $key => $dm)
                                 <li class="item{{ $key + 1 }}">
                                     <a href="#">
-                                        <img class="arrow-img" src="images/f_menu.png" alt=""/>{{ $dm->cat_name }}
+                                        <img class="arrow-img" src="/images/f_menu.png" alt=""/>{{ $dm->cat_name }}
                                     </a>
                                     @if(count($dm->children) > 0)
                                         <ul class="cute">
@@ -190,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </script>
                 </div>
                 <div class="delivery">
-                    <img src="images/delivery.jpg" class="img-responsive" alt=""/>
+                    <img src="/images/delivery.jpg" class="img-responsive" alt=""/>
                     <h3>Delivering</h3>
                     <h4>World Wide</h4>
                 </div>

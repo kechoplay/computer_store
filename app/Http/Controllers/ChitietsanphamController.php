@@ -9,7 +9,7 @@ class ChitietsanphamController extends Controller
 {
     public function index($id){
         $sanpham = SanPham::find($id);
-        $sanphamcungloai = SanPham::where('cat_id',$sanpham->cat_id)->take(3)->get();
+        $sanphamcungloai = SanPham::where('cat_id', $sanpham->cat_id)->where('id', '<>', $id)->take(3)->get();
         return view('User.chitietsanpham', compact('sanpham', 'sanphamcungloai'));
     }
 }
