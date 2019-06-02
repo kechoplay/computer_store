@@ -13,7 +13,7 @@ class KhuyenMaiController extends Controller
     public function index()
     {
         $khuyenmai = KhuyenMai::all();
-        return view('Admin.sale_list', compact('khuyenmai'));
+        return view('Admin.list_sale', compact('khuyenmai'));
     }
 
     public function create()
@@ -45,20 +45,21 @@ class KhuyenMaiController extends Controller
 
     public function edit(Request $request, $id)
     {
+        KhuyenMai::where('product_id', $request->MaSP)->update(['status' => 0]);
         $khuyenmai = KhuyenMai::find($id);
         // $khuyenmai = new quanlykhuyenmai(); // New là tạo mới
-        $khuyenmai->TrangThai = $request->TrangThai == 'on';
-        $khuyenmai->ThoiGianBD = $request->ThoiGianBD;
-        $khuyenmai->ThoiGianKT = $request->ThoiGianKT;
-        $khuyenmai->Giam = $request->Giam;
-        $khuyenmai->MaSP = $request->MaSP;
+        $khuyenmai->status = 1;
+        $khuyenmai->start_time = $request->ThoiGianBD;
+        $khuyenmai->end_time = $request->ThoiGianKT;
+        $khuyenmai->sale = $request->Giam;
+        $khuyenmai->product_id = $request->MaSP;
         $khuyenmai->save();
-        return redirect('admin/quanlykhuyenmai/list');
+        return redirect()->back();
     }
 
-    public function delete($MaKM)
+    public function delete($id)
     {
-        quanlykhuyenmai::find($MaKM)->delete();
-        return redirect('admin/quanlykhuyenmai/list');
+        KhuyenMai::find($id)->delete();
+        return redirect()->back();
     }
 }

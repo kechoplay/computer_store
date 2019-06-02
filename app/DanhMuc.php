@@ -19,7 +19,7 @@ class DanhMuc extends Model
 
     public function children()
     {
-        return $this->hasMany('App\DanhMuc', 'parent_id');
+        return $this->hasMany('App\DanhMuc', 'parent_id')->where('cat_status', 1)->orderBy('sort_order', 'asc');
     }
 
     public function admin()

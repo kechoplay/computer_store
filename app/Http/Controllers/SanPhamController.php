@@ -20,7 +20,7 @@ class SanPhamController extends Controller
 
     public function createProduct()
     {
-        $danhmuc = DanhMuc::all();
+        $danhmuc = DanhMuc::where('parent_id', 0)->get();
         return view('Admin.create_new_product', compact('danhmuc'));
     }
 
@@ -67,7 +67,7 @@ class SanPhamController extends Controller
     {
         $sanpham = SanPham::find($id);
         $sanpham->start_date = Carbon::createFromTimestamp(strtotime($sanpham->start_date))->format('Y-m-d');
-        $danhmuc = DanhMuc::all();
+        $danhmuc = DanhMuc::where('parent_id', 0)->get();
         return view('Admin.update_product', compact('sanpham', 'danhmuc'));
     }
 

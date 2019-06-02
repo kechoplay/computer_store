@@ -41,6 +41,7 @@ Route::get('/', function () {
 //    }]);
 //});
 
+// route /admin/
 Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function () {
     Route::get('/index', ['as' => 'adminIndex', 'uses' => 'AdminController@index']);
 
@@ -98,3 +99,8 @@ Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index
 Route::post('/admin/login', ['as' => 'postLogin', 'uses' => 'AuthController@login']);
 
 Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+
+// route user
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+
+Route::get('/chi-tiet-san-pham/{id}', ['as' => 'chitietsanpham', 'uses' => 'ChitietsanphamController@index']);

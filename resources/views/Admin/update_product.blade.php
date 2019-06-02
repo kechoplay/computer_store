@@ -87,7 +87,11 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="MaDM" class="form-control">
                                         @foreach($danhmuc as $dm)
-                                            <option {{ $sanpham->cat_id == $dm->id ? "selected" : '' }} value="{{$dm->id}}">{{$dm->cat_name}}</option>
+                                            <optgroup label="{{ $dm->cat_name }}">
+                                                @foreach($dm->children as $child)
+                                                    <option value="{{$child->id}}" {{ $sanpham->cat_id == $dm->id ? "selected" : '' }}> {{ $child->cat_name}}</option>
+                                                @endforeach
+                                            </optgroup>
                                         @endforeach
                                     </select>
                                 </div>
@@ -166,10 +170,10 @@
                                 </label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="SPNew" value="1"> Cũ
+                                        <input type="radio" name="SPNew" value="0" {{ $sanpham->status == 0 ? "checked" : '' }}> Cũ
                                     </label>
                                     <label>
-                                        <input type="radio" name="SPNew" value="0" checked> Mới
+                                        <input type="radio" name="SPNew" value="1" {{ $sanpham->status == 1 ? "checked" : '' }}> Mới
                                     </label>
                                 </div>
                             </div>
