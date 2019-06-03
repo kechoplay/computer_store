@@ -4,7 +4,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Quản lý khuyến mại</h3>
+                <h3>Quản lý tin tức</h3>
             </div>
 
             <div class="title_right">
@@ -23,26 +23,34 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Quản lý khuyến mại
-                            <small>Tạo mới khuyến mại</small>
+                        <h2>Quản lý tin tức
+                            <small>Sửa tin tức</small>
                         </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br/>
                         {{ \Illuminate\Support\Facades\Session::get('success') }}
-                        <form method="post" data-parsley-validate class="form-horizontal form-label-left"
-                              action="{{ route('storeNewSale') }}">
+                        <form method="post" data-parsley-validate enctype="multipart/form-data"
+                              class="form-horizontal form-label-left">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ThoiGianBD">Thời gian bắt
-                                    đầu
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TieuDe">Tiêu đề
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="TieuDe" name="TieuDe" required="required"
+                                           value="{{ $tintuc->title }}" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NgayThang">Ngày Đăng
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group col-md-7 col-xs-12">
-                                        <div class='input-group date' id='ThoiGianBD'>
-                                            <input type='text' name="ThoiGianBD" class="form-control" required/>
+                                        <div class='input-group date' id='NgayThang'>
+                                            <input type='text' name="NgayThang" class="form-control"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -51,50 +59,48 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ThoiGianKT">Thời gian kết
-                                    thúc
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TomTat">Tóm tắt
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group col-md-7 col-xs-12">
-                                        <div class='input-group date' id='ThoiGianKT'>
-                                            <input type='text' name="ThoiGianKT" class="form-control" required/>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <input type="text" id="TomTat" name="TomTat" required="required"
+                                           value="{{ $tintuc->sort_description }}"
+                                           class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Giam">Giảm
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="HinhAnh">Hình ảnh
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="input-group">
-                                        <input type="number" min="0" id="Giam" name="Giam" required
-                                               class="form-control col-md-7 col-xs-12">
-                                        <span class="input-group-addon">%</span>
-                                    </div>
+                                    <input type="file" id="HinhAnh" name="HinhAnh" accept="image/*"
+                                           value="{{ $tintuc->image }}" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaSP">Sản phẩm
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NoiDungCT">Nội dung chi
+                                    tiết
                                     <span class="required">*</span>
                                 </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="MaSP" name="MaSP">
-                                        @foreach($danhsachsanpham as $sanpham)
-                                            <option value="{{$sanpham->id}}">{{$sanpham->product_name}} </option>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <textarea id="NoiDungCT" name="NoiDungCT"
+                                              rows="10">{{ $tintuc->description }}</textarea>
+                                </div>
+                            </div>
+                            @if (isset($error))
+                                <div>
+                                    <ul>
+                                        @foreach ($error as $err)
+                                            <li class="text-danger">{{$err}}</li>
                                         @endforeach
-                                    </select>
+                                    </ul>
                                 </div>
-                            </div>
+                            @endif
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="reset">Đặt lại</button>
-                                    <button type="submit" class="btn btn-success">Tạo mới</button>
+                                    <button type="submit" class="btn btn-success">Cập nhật</button>
                                 </div>
                             </div>
                         </form>
@@ -108,12 +114,12 @@
 @push('js')
     <!-- bootstrap-datetimepicker -->
     <script src="/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
     <script>
-        $('#ThoiGianBD').datetimepicker({
+        $('#NgayThang').datetimepicker({
             format: 'YYYY-MM-DD',
+            defaultDate: '{{ $tintuc->date }}'
         });
-        $('#ThoiGianKT').datetimepicker({
-            format: 'YYYY-MM-DD',
-        });
+        CKEDITOR.replace('NoiDungCT');
     </script>
 @endpush

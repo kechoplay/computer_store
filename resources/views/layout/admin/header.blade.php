@@ -65,15 +65,13 @@
                             @if(\Illuminate\Support\Facades\Auth::user()->level == 1)
                                 <li>
                                     <a href="{{ route('listUserView') }}">
-                                        <i class="fa fa-edit"></i>
-                                        Quản lý tài khoản
+                                        <i class="fa fa-edit"></i>Quản lý tài khoản
                                     </a>
                                 </li>
                             @endif
                             <li>
                                 <a href="{{ route('listCategoryView') }}">
-                                    <i class="fa fa-desktop"></i>
-                                    Quản lý danh mục
+                                    <i class="fa fa-desktop"></i>Quản lý danh mục
                                 </a>
                             </li>
                             <li>
@@ -83,8 +81,12 @@
                             </li>
                             <li>
                                 <a href="{{ route('saleListView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>
-                                    Quản lý khuyến mãi
+                                    <i class="fa fa-bar-chart-o"></i>Quản lý khuyến mãi
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('listNewView') }}">
+                                    <i class="fa fa-bar-chart-o"></i>Quản lý tin tức
                                 </a>
                             </li>
                         </ul>

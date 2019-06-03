@@ -92,6 +92,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/update-sale/{id}', ['as' => 'updateSale', 'uses' => 'KhuyenMaiController@edit']);
 
     Route::get('/delete-sale/{id}', ['as' => 'deleteSale', 'uses' => 'KhuyenMaiController@delete']);
+// tin tuc
+    Route::get('/list-news', ['as' => 'listNewView', 'uses' => 'TinTucController@index']);
+
+    route::get('create-new-news', ['as' => 'createNewNewView', 'uses' => 'TinTucController@create']);
+
+    route::post('store-new-news', ['as' => 'storeNewNew', 'uses' => 'TinTucController@store']);
+
+    Route::get('/update-new/{id}', ['as' => 'updateNewView', 'uses' => 'TinTucController@update']);
+
+    Route::post('/update-new/{id}', ['as' => 'updateNew', 'uses' => 'TinTucController@edit']);
+
+    Route::get('/delete-new/{id}', ['as' => 'deleteNew', 'uses' => 'TinTucController@delete']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
