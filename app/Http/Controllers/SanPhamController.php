@@ -144,4 +144,11 @@ class SanPhamController extends Controller
 
         return view('User.search', compact('sanpham', 'str'));
     }
+
+    public function productCategory($idDanhMuc)
+    {
+        $sanpham = SanPham::where('cat_id', $idDanhMuc)->simplePaginate(15);
+        $danhmuc = DanhMuc::where('id', $idDanhMuc)->first();
+        return view('User.sanphamdanhmuc', compact('sanpham', 'danhmuc'));
+    }
 }

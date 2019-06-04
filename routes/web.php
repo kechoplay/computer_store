@@ -122,3 +122,5 @@ Route::get('/san-pham/danh-sach-san-pham', ['as' => 'danhsachsanpham', 'uses' =>
 Route::get('/san-pham/danh-sach-khuyen-mai', ['as' => 'danhsachkhuyenmai', 'uses' => 'SanPhamController@danhSachKhuyenMai']);
 
 Route::get('/san-pham/tim-kiem', ['as' => 'searchProduct', 'uses' => 'SanPhamController@searchProduct']);
+
+Route::get('/san-pham/danh-muc/{id}', ['as' => 'productCategory', 'uses' => 'SanPhamController@productCategory']);

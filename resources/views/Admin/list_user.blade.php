@@ -55,7 +55,6 @@
                                 <th>Điện thoại</th>
                                 <th>Ngày sinh</th>
                                 <th>Giới tính</th>
-                                <th>Lần đăng nhập cuối</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -68,9 +67,8 @@
                                     <td>{{ $user['address'] }}</td>
                                     <td>{{ $user['email'] }}</td>
                                     <td>{{ $user['mobile'] }}</td>
-                                    <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($user['birthday']))->format('Y-m-d') }}</td>
+                                    <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($user['birthday']))->format('d-m-Y') }}</td>
                                     <td>{{ $user['gender'] == 1 ? 'Nam' : 'Nữ' }}</td>
-                                    <td>{{ $user['last_login_time'] ? \Carbon\Carbon::createFromTimestamp(strtotime($user['last_login_time']))->format('Y-m-d H:i:s') : 0}}</td>
                                     <td>
                                         <a href="{{ route('deleteUser', ['id' => $user['id']]) }}"
                                            onclick="return confirm('Bạn có chắc muốn xóa không?')">

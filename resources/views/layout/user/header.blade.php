@@ -109,19 +109,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="slider">
         <div class="callbacks_container">
             <ul class="rslides" id="slider">
-                <li><img src="/images/b1.jpg" class="img-responsive" alt="" style="height: 500px"/>
+                <li><img src="/images/b1.jpg" class="img-responsive" alt="" style="height: 400px"/>
                     {{--<div class="banner_desc">--}}
                     {{--<h1>We Provide Worlds top fashion for less fashionpress.</h1>--}}
                     {{--<h2>FashionPress the name of the of hi class fashion Web FreePsd.</h2>--}}
                     {{--</div>--}}
                 </li>
-                <li><img src="/images/b2.jpg" class="img-responsive" alt="" style="height: 500px"/>
+                <li><img src="/images/b2.jpg" class="img-responsive" alt="" style="height: 400px"/>
                     {{--<div class="banner_desc">--}}
                     {{--<h1>Duis autem vel eum iriure dolor in hendrerit.</h1>--}}
                     {{--<h2>Claritas est etiam processus dynamicus, qui sequitur .</h2>--}}
                     {{--</div>--}}
                 </li>
-                <li><img src="/images/bn1.png" class="img-responsive" alt="" style="height: 500px"/>
+                <li><img src="/images/bn1.png" class="img-responsive" alt="" style="height: 400px"/>
                     {{--<div class="banner_desc">--}}
                     {{--<h1>Ut wisi enim ad minim veniam, quis nostrud.</h1>--}}
                     {{--<h2>Mirum est notare quam littera gothica, quam nunc putamus.</h2>--}}
@@ -163,8 +163,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     @if(count($dm->children) > 0)
                                         <ul class="cute">
                                             @foreach($dm->children as $childKey => $child)
-                                                <li class="subitem{{ $childKey +1 }}"><a
-                                                            href="#">{{ $child->cat_name }} </a></li>
+                                                <li class="subitem{{ $childKey +1 }}">
+                                                    <a href="{{ route('productCategory', ['id' => $child->id]) }}">{{ $child->cat_name }} </a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     @endif
