@@ -19,6 +19,6 @@ class SanPham extends Model
 
     public function khuyenmai()
     {
-        return $this->hasMany('App\KhuyenMai', 'product_id', 'id');
+        return $this->hasMany('App\KhuyenMai', 'product_id', 'id')->orderBy('end_time', 'DESC');
     }
 }

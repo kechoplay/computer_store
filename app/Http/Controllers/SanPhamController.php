@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DanhMuc;
+use App\KhuyenMai;
 use App\SanPham;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -104,5 +105,27 @@ class SanPhamController extends Controller
         }
         $sanpham->save();
         return redirect()->route('productList');
+    }
+
+    public function chiTietSanPham($id)
+    {
+        $sanpham = SanPham::find($id);
+        $sanphamcungloai = SanPham::where('cat_id', $sanpham->cat_id)->where('id', '<>', $id)->take(3)->get();
+        return view('User.chitietsanpham', compact('sanpham', 'sanphamcungloai'));
+    }
+
+    public function danhSachSanPham()
+    {
+        $sanpham = SanPham::simplePaginate(15);
+        return view('User.danhsachsanpham', compact('sanpham'));
+    }
+
+    public function danhSachKhuyenMai()
+    {
+        $date_start = Carbon::now()->startOfDay();
+        $date_end = Carbon::now()->endOfDay();
+        $sanpham = KhuyenMai::where('start_time', '<=', $date_end)
+            ->where('end_time', '>=', $date_start)->simplePaginate(15);
+        return view('User.danhsachkhuyenmai', compact('sanpham'));
     }
 }

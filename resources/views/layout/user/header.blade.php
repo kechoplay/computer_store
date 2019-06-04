@@ -92,8 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a class="toggleMenu" href="#">Menu</a>
             <ul class="nav">
                 <li class="active"><a href="{{ route('index') }}" data-hover="Home">Trang chủ</a></li>
-                <li><a href="about.html" data-hover="About Us">Danh sách sản phẩm</a></li>
-                <li><a href="careers.html" data-hover="Careers">Careers</a></li>
+                <li><a href="{{ route('danhsachsanpham') }}" data-hover="About Us">Danh sách sản phẩm</a></li>
+                <li><a href="{{ route('danhsachkhuyenmai') }}" data-hover="Careers">Danh sách khuyến mãi</a></li>
                 <li><a href="contact.html" data-hover="Contact Us">Contact Us</a></li>
                 <li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>
                 <li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>

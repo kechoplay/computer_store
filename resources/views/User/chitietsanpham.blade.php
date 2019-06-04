@@ -38,7 +38,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <a href="reservation.html" title="Online Reservation"
+                    <a href="" title="Online Reservation"
                        class="btn bt1 btn-primary btn-normal btn-inline " target="_self">Mua</a>
                 </div>
                 <div class="clearfix"></div>
