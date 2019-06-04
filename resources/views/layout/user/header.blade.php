@@ -1,7 +1,9 @@
 <?php
 $danhmuc = getDanhMuc();
+$tintuc = getTinTuc();
+$currentRoute = \Illuminate\Support\Facades\Route::getCurrentRoute()->uri;
 ?>
-<!DOCTYPE HTML>
+        <!DOCTYPE HTML>
 <html>
 <head>
     <title>Computer Store</title>
@@ -94,47 +96,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="active"><a href="{{ route('index') }}" data-hover="Home">Trang chủ</a></li>
                 <li><a href="{{ route('danhsachsanpham') }}" data-hover="About Us">Danh sách sản phẩm</a></li>
                 <li><a href="{{ route('danhsachkhuyenmai') }}" data-hover="Careers">Danh sách khuyến mãi</a></li>
-                <li><a href="contact.html" data-hover="Contact Us">Contact Us</a></li>
-                <li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>
-                <li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>
-                <li><a href="wishlist.html" data-hover="Wish List">Wish List</a></li>
+                {{--<li><a href="contact.html" data-hover="Contact Us">Contact Us</a></li>--}}
+                {{--<li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>--}}
+                {{--<li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>--}}
+                {{--<li><a href="wishlist.html" data-hover="Wish List">Wish List</a></li>--}}
             </ul>
             <script type="text/javascript" src="/js/nav.js"></script>
         </div><!-- end h_menu4 -->
     </div>
 </div>
-{{--<div class="slider">--}}
-{{--<div class="callbacks_container">--}}
-{{--<ul class="rslides" id="slider">--}}
-{{--<li><img src="images/banner1.jpg" class="img-responsive" alt=""/>--}}
-{{--<div class="banner_desc">--}}
-{{--<h1>We Provide Worlds top fashion for less fashionpress.</h1>--}}
-{{--<h2>FashionPress the name of the of hi class fashion Web FreePsd.</h2>--}}
-{{--</div>--}}
-{{--</li>--}}
-{{--<li><img src="images/banner2.jpg" class="img-responsive" alt=""/>--}}
-{{--<div class="banner_desc">--}}
-{{--<h1>Duis autem vel eum iriure dolor in hendrerit.</h1>--}}
-{{--<h2>Claritas est etiam processus dynamicus, qui sequitur .</h2>--}}
-{{--</div>--}}
-{{--</li>--}}
-{{--<li><img src="images/banner3.jpg" class="img-responsive" alt=""/>--}}
-{{--<div class="banner_desc">--}}
-{{--<h1>Ut wisi enim ad minim veniam, quis nostrud.</h1>--}}
-{{--<h2>Mirum est notare quam littera gothica, quam nunc putamus.</h2>--}}
-{{--</div>--}}
-{{--</li>--}}
-{{--</ul>--}}
-{{--</div>--}}
-{{--</div>--}}
+@if($currentRoute == '' || $currentRoute == '/')
+    <div class="slider">
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider">
+                <li><img src="/images/b1.jpg" class="img-responsive" alt="" style="height: 500px"/>
+                    {{--<div class="banner_desc">--}}
+                    {{--<h1>We Provide Worlds top fashion for less fashionpress.</h1>--}}
+                    {{--<h2>FashionPress the name of the of hi class fashion Web FreePsd.</h2>--}}
+                    {{--</div>--}}
+                </li>
+                <li><img src="/images/b2.jpg" class="img-responsive" alt="" style="height: 500px"/>
+                    {{--<div class="banner_desc">--}}
+                    {{--<h1>Duis autem vel eum iriure dolor in hendrerit.</h1>--}}
+                    {{--<h2>Claritas est etiam processus dynamicus, qui sequitur .</h2>--}}
+                    {{--</div>--}}
+                </li>
+                <li><img src="/images/bn1.png" class="img-responsive" alt="" style="height: 500px"/>
+                    {{--<div class="banner_desc">--}}
+                    {{--<h1>Ut wisi enim ad minim veniam, quis nostrud.</h1>--}}
+                    {{--<h2>Mirum est notare quam littera gothica, quam nunc putamus.</h2>--}}
+                    {{--</div>--}}
+                </li>
+            </ul>
+        </div>
+    </div>
+@endif
 <div class="column_center">
     <div class="container">
         <div class="search">
             <div class="stay">Tìm kiếm sản phẩm</div>
             <div class="stay_right">
-                <input type="text" value="" onfocus="this.value = '';"
-                       onblur="if (this.value == '') {this.value = '';}">
-                <input type="submit" value="">
+                <form method="get" action="{{ route('searchProduct') }}">
+                    <input type="text" value="" name="str" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = '';}">
+                    <input type="submit" value="">
+                </form>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -157,7 +163,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     @if(count($dm->children) > 0)
                                         <ul class="cute">
                                             @foreach($dm->children as $childKey => $child)
-                                                <li class="subitem{{ $childKey +1 }}"><a href="#">{{ $child->cat_name }} </a></li>
+                                                <li class="subitem{{ $childKey +1 }}"><a
+                                                            href="#">{{ $child->cat_name }} </a></li>
                                             @endforeach
                                         </ul>
                                     @endif
@@ -186,42 +193,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         });
                     </script>
                 </div>
-                <div class="delivery">
-                    <img src="/images/delivery.jpg" class="img-responsive" alt=""/>
-                    <h3>Delivering</h3>
-                    <h4>World Wide</h4>
-                </div>
-                <div class="twitter">
-                    <h3>Latest From Twitter</h3>
-                    <ul class="twt1">
-                        <i class="twt"> </i>
-                        <li class="twt1_desc"><span class="m_1">@Contrary</span> to popular belief, Lorem Ipsum is<span
-                                    class="m_1"> not simply</span></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                    <ul class="twt1">
-                        <i class="twt"> </i>
-                        <li class="twt1_desc"><span class="m_1">There are many</span> variations of passages of Lorem
-                            Ipsum available, but the majority <span class="m_1">have suffered</span></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                    <ul class="twt1">
-                        <i class="twt"> </i>
-                        <li class="twt1_desc"><span class="m_1">Lorem Ipsum</span> is simply dummy text of the printing
-                            and typesetting industry. Lorem Ipsum has <span class="m_1">been the industry's standard dummy text ever</span>
-                        </li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
-                <div class="clients">
-                    <h3>Our Happy Clients</h3>
-                    <h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                        beatae.</h4>
-                    <ul class="user">
-                        <i class="user_icon"></i>
-                        <li class="user_desc"><a href="#"><p>John Doe, Company Info</p></a></li>
-                        <div class="clearfix"></div>
-                    </ul>
-                </div>
+                {{--<div class="delivery">--}}
+                {{--<img src="/images/delivery.jpg" class="img-responsive" alt=""/>--}}
+                {{--<h3>Delivering</h3>--}}
+                {{--<h4>World Wide</h4>--}}
+                {{--</div>--}}
+                {{--<div class="twitter">--}}
+                {{--<h3>Latest From Twitter</h3>--}}
+                {{--<ul class="twt1">--}}
+                {{--<i class="twt"> </i>--}}
+                {{--<li class="twt1_desc"><span class="m_1">@Contrary</span> to popular belief, Lorem Ipsum is<span--}}
+                {{--class="m_1"> not simply</span></li>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</ul>--}}
+                {{--<ul class="twt1">--}}
+                {{--<i class="twt"> </i>--}}
+                {{--<li class="twt1_desc"><span class="m_1">There are many</span> variations of passages of Lorem--}}
+                {{--Ipsum available, but the majority <span class="m_1">have suffered</span></li>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</ul>--}}
+                {{--<ul class="twt1">--}}
+                {{--<i class="twt"> </i>--}}
+                {{--<li class="twt1_desc"><span class="m_1">Lorem Ipsum</span> is simply dummy text of the printing--}}
+                {{--and typesetting industry. Lorem Ipsum has <span class="m_1">been the industry's standard dummy text ever</span>--}}
+                {{--</li>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</ul>--}}
+                {{--</div>--}}
+                {{--<div class="clients">--}}
+                {{--<h3>Our Happy Clients</h3>--}}
+                {{--<h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque--}}
+                {{--laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto--}}
+                {{--beatae.</h4>--}}
+                {{--<ul class="user">--}}
+                {{--<i class="user_icon"></i>--}}
+                {{--<li class="user_desc"><a href="#"><p>John Doe, Company Info</p></a></li>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</ul>--}}
+                {{--</div>--}}
             </div>

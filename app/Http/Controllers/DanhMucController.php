@@ -48,8 +48,7 @@ class DanhMucController extends Controller
             'cat_name' => $categoryName,
             'parent_id' => $parentId,
             'sort_order' => $sortOrder,
-            'cat_status' => $status,
-            'created_by' => Auth::id()
+            'cat_status' => $status
         ]);
 
         return redirect()->back();
@@ -90,8 +89,7 @@ class DanhMucController extends Controller
             'cat_name' => $categoryName,
             'parent_id' => $parentId,
             'sort_order' => $sortOrder,
-            'cat_status' => $status,
-            'updated_by' => Auth::id()
+            'cat_status' => $status
         ]);
 
         return redirect()->back();

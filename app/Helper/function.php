@@ -13,3 +13,10 @@ function checkSale($idProduct)
 
     return $khuyenmai;
 }
+
+function getTinTuc()
+{
+    $tintuc = \App\TinTuc::take(5)->get();
+
+    return $tintuc;
+}

@@ -115,8 +115,10 @@ Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'AuthController@logout'
 // route user
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 
-Route::get('/sanpham/chi-tiet-san-pham/{id}', ['as' => 'chitietsanpham', 'uses' => 'SanPhamController@chiTietSanPham']);
+Route::get('/san-pham/chi-tiet-san-pham/{id}', ['as' => 'chitietsanpham', 'uses' => 'SanPhamController@chiTietSanPham']);
 
-Route::get('/sanpham/danh-sach-san-pham', ['as' => 'danhsachsanpham', 'uses' => 'SanPhamController@danhSachSanPham']);
+Route::get('/san-pham/danh-sach-san-pham', ['as' => 'danhsachsanpham', 'uses' => 'SanPhamController@danhSachSanPham']);
 
-Route::get('/sanpham/danh-sach-khuyen-mai', ['as' => 'danhsachkhuyenmai', 'uses' => 'SanPhamController@danhSachKhuyenMai']);
+Route::get('/san-pham/danh-sach-khuyen-mai', ['as' => 'danhsachkhuyenmai', 'uses' => 'SanPhamController@danhSachKhuyenMai']);
+
+Route::get('/san-pham/tim-kiem', ['as' => 'searchProduct', 'uses' => 'SanPhamController@searchProduct']);

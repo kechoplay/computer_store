@@ -72,6 +72,7 @@ class SanPhamController extends Controller
         return view('Admin.update_product', compact('sanpham', 'danhmuc'));
     }
 
+    // cập nhật sản phẩm
     public function update(Request $sp, $id)
     {
         $sanpham = SanPham::find($id);
@@ -107,6 +108,7 @@ class SanPhamController extends Controller
         return redirect()->route('productList');
     }
 
+    // chi tiết sản phẩm
     public function chiTietSanPham($id)
     {
         $sanpham = SanPham::find($id);
@@ -114,12 +116,14 @@ class SanPhamController extends Controller
         return view('User.chitietsanpham', compact('sanpham', 'sanphamcungloai'));
     }
 
+    // danh sách sản phẩm
     public function danhSachSanPham()
     {
         $sanpham = SanPham::simplePaginate(15);
         return view('User.danhsachsanpham', compact('sanpham'));
     }
 
+    // danh sách khuyến mãi
     public function danhSachKhuyenMai()
     {
         $date_start = Carbon::now()->startOfDay();
@@ -127,5 +131,17 @@ class SanPhamController extends Controller
         $sanpham = KhuyenMai::where('start_time', '<=', $date_end)
             ->where('end_time', '>=', $date_start)->simplePaginate(15);
         return view('User.danhsachkhuyenmai', compact('sanpham'));
+    }
+
+    // tìm kiếm sản phẩm
+    public function searchProduct(Request $request)
+    {
+        $str = $request->query('str');
+        if ($str != null || $str != '')
+            $sanpham = SanPham::where('product_name', 'LIKE', '%' . $str . '%')->simplePaginate(15);
+        else
+            $sanpham = SanPham::simplePaginate(15);
+
+        return view('User.search', compact('sanpham', 'str'));
     }
 }
