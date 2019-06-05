@@ -20,3 +20,8 @@ function getTinTuc()
 
     return $tintuc;
 }
+
+function getShoppingCart()
+{
+    return \Gloudemans\Shoppingcart\Facades\Cart::content();
+}

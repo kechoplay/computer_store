@@ -90,4 +90,10 @@ class TinTucController extends Controller
         $tintuc->delete();
         return redirect()->route('listNewView');
     }
+
+    public function listNew()
+    {
+        $tintuc = TinTuc::all()->orderBy('');
+        return view('Admin.list_tin_tuc', compact('tintuc'));
+    }
 }

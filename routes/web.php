@@ -124,3 +124,7 @@ Route::get('/san-pham/danh-sach-khuyen-mai', ['as' => 'danhsachkhuyenmai', 'uses
 Route::get('/san-pham/tim-kiem', ['as' => 'searchProduct', 'uses' => 'SanPhamController@searchProduct']);
 
 Route::get('/san-pham/danh-muc/{id}', ['as' => 'productCategory', 'uses' => 'SanPhamController@productCategory']);
+
+Route::get('/tin-tuc', ['as' => 'danhsachtintuc', 'uses' => 'TinTucController@listNew']);
+
+Route::get('/gio-hang/add-cart/{id}', ['as' => 'addCart', 'uses' => 'ShoppingCartController@addCart']);

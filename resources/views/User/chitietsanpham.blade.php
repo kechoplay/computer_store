@@ -1,5 +1,5 @@
 <?php
-    $khuyenmai = checkSale($sanpham->id);
+$now = time();
 ?>
 @extends('layout.user.main')
 @section('content')
@@ -23,23 +23,26 @@
                     <p class="availability">Tình trạng: <span
                                 class="color">{{ ($sanpham->quantity > 0) ? 'Còn hàng' : 'Hết hàng'}}</span></p>
                     <div class="price_single">
-                        @if($khuyenmai)
+                        @if($sanpham->khuyenmai->count() != 0 && $now >= strtotime($sanpham->khuyenmai[0]->start_time) && $now <= strtotime($sanpham->khuyenmai[0]->end_time))
                             <span class="reducedfrom">{{ number_format($sanpham->price) }}</span>
                             <span class="actual">{{ number_format($sanpham->price - ($sanpham->price * $khuyenmai->sale / 100)) }}</span>
                         @else
                             <span class="actual">{{ number_format($sanpham->price) }}</span>
                         @endif
                     </div>
-                    <div class="quantity_box">
-                        <ul class="product-qty">
-                            <span>Số lượng:</span>
-                            <input type="number" id="quantity" min="0" max="{{ $sanpham->quantity }}"
-                                   value="{{ $sanpham->quantity }}">
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <a href="" title="Online Reservation"
-                       class="btn bt1 btn-primary btn-normal btn-inline " target="_self">Mua</a>
+                    <form method="get" action="{{ route('addCart', ['id' => $sanpham->id]) }}">
+                        <div class="quantity_box">
+                            <ul class="product-qty">
+                                <span>Số lượng:</span>
+                                <input type="number" id="quantity" name="quantity" min="0"
+                                       max="{{ $sanpham->quantity }}" value="{{ $sanpham->quantity }}">
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <button type="submit" class="btn bt1 btn-primary btn-normal btn-inline ">
+                            Mua
+                        </button>
+                    </form>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -80,7 +83,8 @@
                             </div>
                         </a>
                         <div class="grid_2" style="height: 100px;">
-                            <a href="{{ route('chitietsanpham', ['id' => $same->id]) }}"><p>{{ $same->product_name }}</p></a>
+                            <a href="{{ route('chitietsanpham', ['id' => $same->id]) }}">
+                                <p>{{ $same->product_name }}</p></a>
                             <ul class="grid_2-bottom">
                                 <li class="grid_2-left">
                                     <p>{{ number_format($same->price) }}</p>

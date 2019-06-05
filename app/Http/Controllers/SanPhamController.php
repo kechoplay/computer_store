@@ -120,6 +120,7 @@ class SanPhamController extends Controller
     public function danhSachSanPham()
     {
         $sanpham = SanPham::simplePaginate(15);
+
         return view('User.danhsachsanpham', compact('sanpham'));
     }
 
@@ -128,8 +129,10 @@ class SanPhamController extends Controller
     {
         $date_start = Carbon::now()->startOfDay();
         $date_end = Carbon::now()->endOfDay();
+
         $sanpham = KhuyenMai::where('start_time', '<=', $date_end)
             ->where('end_time', '>=', $date_start)->simplePaginate(15);
+
         return view('User.danhsachkhuyenmai', compact('sanpham'));
     }
 
@@ -137,10 +140,13 @@ class SanPhamController extends Controller
     public function searchProduct(Request $request)
     {
         $str = $request->query('str');
+
         if ($str != null || $str != '')
             $sanpham = SanPham::where('product_name', 'LIKE', '%' . $str . '%')->simplePaginate(15);
         else
             $sanpham = SanPham::simplePaginate(15);
+
+        $sanpham->appends(['str' => $str]);
 
         return view('User.search', compact('sanpham', 'str'));
     }
