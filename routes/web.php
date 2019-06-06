@@ -128,3 +128,11 @@ Route::get('/san-pham/danh-muc/{id}', ['as' => 'productCategory', 'uses' => 'San
 Route::get('/tin-tuc', ['as' => 'danhsachtintuc', 'uses' => 'TinTucController@listNew']);
 
 Route::get('/gio-hang/add-cart/{id}', ['as' => 'addCart', 'uses' => 'ShoppingCartController@addCart']);
+
+Route::get('/gio-hang/update-cart', ['as' => 'updateCart', 'uses' => 'ShoppingCartController@updateCart']);
+
+Route::get('/gio-hang/delete-cart/{id}', ['as' => 'deleteCart', 'uses' => 'ShoppingCartController@deleteCart']);
+
+Route::get('/gio-hang', ['as' => 'cart', 'uses' => 'ShoppingCartController@cart']);
+
+Route::get('/gio-hang/thanh-toan', ['as' => 'checkout', 'uses' => 'ShoppingCartController@checkout']);

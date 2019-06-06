@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\SanPham;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,29 +19,51 @@ class ShoppingCartController extends Controller
         else
             $price = $product->price;
 
-        $shoppingCart = Cart::content();
-        $listCartId[] = $id;
-        Session::put('cart', $listCartId);
-        dd(Session::all());
-        foreach ($shoppingCart as $cart) {
-//            if (!in_array($cart->id, $listCartId))
-//                $listCartId[] = $cart->id;
+        $listCart = Session::get('cart');
 
-            if ($id == $cart->id) {
-                if ($quantity != null)
-                    Cart::update($cart->rowId, $quantity);
-                else
-                    Cart::update($cart->rowId, 1);
-            }
+        if (isset($listCart[$id])) {
+            $listCart[$id]['quantity'] = $quantity != null ? $listCart[$id]['quantity'] + $quantity : $listCart[$id]['quantity'] + 1;
+            Session::put('cart', $listCart);
+        } else {
+            $listCartId = [
+                'quantity' => $quantity != null ? $quantity : 1,
+                'price' => $price
+            ];
+            $listCart[$id] = $listCartId;
+            Session::put('cart', $listCart);
         }
 
-//        if (!in_array($id, $listCartId)) {
-//            if ($quantity != null)
-//                Cart::add($id, $product->product_name, $quantity, $price);
-//            else
-//                Cart::add($id, $product->product_name, 1, $price);
-//        }
-
         return redirect()->back();
+    }
+
+    public function cart()
+    {
+        $listCart = Session::get('cart');
+        $listProduct = [];
+        foreach ($listCart as $key => $cart) {
+            $sanpham = SanPham::where('id', $key)->first();
+            $sale = $this->getSale($sanpham);
+            $listProduct[] = [
+                'id' => $key,
+                'quantity' => $cart['quantity'],
+                'price' => $cart['price'],
+                'price_origin' => $sanpham->price,
+                'sale' => $sale,
+                'product_name' => $sanpham->product_name,
+                'image' => $sanpham->image
+            ];
+        }
+
+        return view('User.giohang', compact('listProduct'));
+    }
+
+    public function getSale($sanpham)
+    {
+        $now = time();
+        $sale = 0;
+        if ($sanpham->khuyenmai->count() != 0 && $now >= strtotime($sanpham->khuyenmai[0]->start_time) && $now <= strtotime($sanpham->khuyenmai[0]->end_time))
+            $sale = $sanpham->khuyenmai[0]->sale;
+
+        return $sale;
     }
 }

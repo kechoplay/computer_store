@@ -2,7 +2,7 @@
 $danhmuc = getDanhMuc();
 $tintuc = getTinTuc();
 $shoppingCart = getShoppingCart();
-$totalCart = $shoppingCart->count();
+$totalCart = count($shoppingCart);
 $currentRoute = \Illuminate\Support\Facades\Route::getCurrentRoute()->uri;
 ?>
         <!DOCTYPE HTML>
@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a href="login.html">
                     <li>Đăng nhập</li>
                 </a>
-                <a href="#">
+                <a href="{{ route('cart') }}">
                     <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;<img src="/images/bag.png" alt=""/>
                     </li>
                 </a>
@@ -152,7 +152,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main">
     <div class="content_top">
         <div class="container">
-            <div class="col-md-3 sidebar_box">
+            @if($currentRoute != 'gio-hang')
+                <div class="col-md-3 sidebar_box">
                 <div class="sidebar">
                     <div class="menu_box">
                         <h3 class="menu_head">Products Menu</h3>
@@ -235,3 +236,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 {{--</ul>--}}
                 {{--</div>--}}
             </div>
+            @endif

@@ -23,5 +23,6 @@ function getTinTuc()
 
 function getShoppingCart()
 {
-    return \Gloudemans\Shoppingcart\Facades\Cart::content();
+    $listCart = \Illuminate\Support\Facades\Session::get('cart');
+    return $listCart;
 }
