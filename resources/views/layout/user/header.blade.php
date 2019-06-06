@@ -28,6 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet'
           type='text/css'>
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/etalage.css">
     <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
     <script src="/js/responsiveslides.min.js"></script>
@@ -70,6 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <script type="text/javascript" src="/js/hover_pack.js"></script>
+    @stack('css')
 </head>
 <body>
 <div class="header">

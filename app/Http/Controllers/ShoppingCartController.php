@@ -40,21 +40,54 @@ class ShoppingCartController extends Controller
     {
         $listCart = Session::get('cart');
         $listProduct = [];
-        foreach ($listCart as $key => $cart) {
-            $sanpham = SanPham::where('id', $key)->first();
-            $sale = $this->getSale($sanpham);
-            $listProduct[] = [
-                'id' => $key,
-                'quantity' => $cart['quantity'],
-                'price' => $cart['price'],
-                'price_origin' => $sanpham->price,
-                'sale' => $sale,
-                'product_name' => $sanpham->product_name,
-                'image' => $sanpham->image
-            ];
+        if (count($listCart) > 0) {
+            foreach ($listCart as $key => $cart) {
+                $sanpham = SanPham::where('id', $key)->first();
+                $sale = $this->getSale($sanpham);
+                $listProduct[] = [
+                    'id' => $key,
+                    'quantity' => $cart['quantity'],
+                    'price' => $cart['price'],
+                    'price_origin' => $sanpham->price,
+                    'sale' => $sale,
+                    'product_name' => $sanpham->product_name,
+                    'image' => $sanpham->image
+                ];
+            }
         }
 
         return view('User.giohang', compact('listProduct'));
+    }
+
+    public function updateCart(Request $request)
+    {
+        $quantityList = $request->quantity;
+        $listCart = Session::get('cart');
+        $index = 0;
+
+        foreach ($listCart as $key => $cart) {
+            $product = SanPham::where('id', $key)->first();
+            if ($product->quantity < $quantityList[$index])
+                $listCart[$key]['quantity'] = $product->quantity;
+            else
+                $listCart[$key]['quantity'] = $quantityList[$index];
+
+            Session::put('cart', $listCart);
+            $index++;
+        }
+
+        return redirect()->back();
+    }
+
+    public function deleteCart($id)
+    {
+        $listCart = Session::get('cart');
+        if (isset($listCart[$id]))
+            unset($listCart[$id]);
+
+        Session::put('cart', $listCart);
+
+        return redirect()->back();
     }
 
     public function getSale($sanpham)

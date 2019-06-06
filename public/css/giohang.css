@@ -1,0 +1,129 @@
+.giohang {
+    padding-top: 50px;
+    background-color: #F0F0F0;
+    padding-bottom: 50px;
+}
+
+.giohang .content-giohang .title-giohang {
+    background-color: #F0F0F0;
+}
+
+.giohang .content-giohang .title-giohang a {
+    color: #288AD6;
+    text-decoration: none;
+}
+
+.giohang .content-giohang .title-giohang p {
+    font-size: 20px;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang {
+    padding: 20px 20px !important;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang img {
+    width: 100%;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang i {
+    font-size: 13px;
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang .col-md-7 a {
+    text-decoration: none;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang .col-md-7 h3 {
+    font-size: 16px;
+    color: #0090D0;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang .col-md-7 ul li {
+    color: #333;
+}
+
+.giohang .content-giohang .main-giohang .sp-giohang .col-md-2 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.giohang .content-giohang .main-giohang .soluong-sp .change_qty {
+    display: inline-block;
+    color: #fff;
+    background: #2e748e;
+    width: 25px;
+    height: 25px;
+    font-weight: 900;
+    line-height: 22px;
+}
+
+.giohang .content-giohang .main-giohang .soluong-sp .cursor_hover {
+    cursor: pointer;
+}
+
+.giohang .content-giohang .main-giohang button {
+    margin-left: 15px;
+}
+
+.giohang .content-giohang h4 {
+    color: #C82333;
+}
+
+.giohang .content-giohang .from_TTKH .choose_GT {
+    padding-left: 25px !important;
+    margin-bottom: 10px !important;
+}
+
+.giohang .content-giohang .from_TT {
+    margin-bottom: 20px !important;
+}
+
+.giohang .content-giohang .from_DC {
+    width: 90%;
+    margin: auto !important;
+    background-color: #ccc;
+    padding: 20px 20px !important;
+    margin-top: 10px !important;
+}
+
+.giohang .content-giohang .from_DC .btn-group {
+    margin-top: 20px !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.giohang .content-giohang .from_DC .btn-group button {
+    background-color: #fff !important;
+    color: #0090D0;
+}
+
+.giohang .content-giohang .from_DC h6 {
+    margin-right: 20px;
+    padding-top: 8px;
+}
+
+.giohang .content-giohang .choosepayment {
+    width: 90%;
+    margin: 20px auto !important;
+    padding-bottom: 20px !important;
+}
+
+.giohang .content-giohang .choosepayment .payoffline button,
+.giohang .content-giohang .choosepayment .payonline button {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.giohang .content-giohang .choosepayment .payoffline button span,
+.giohang .content-giohang .choosepayment .payonline button span {
+    text-transform: none;
+}
+
+.sp-giohang {
+    border-bottom: solid 1px black;
+}

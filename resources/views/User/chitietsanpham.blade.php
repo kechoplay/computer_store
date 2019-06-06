@@ -25,7 +25,7 @@ $now = time();
                     <div class="price_single">
                         @if($sanpham->khuyenmai->count() != 0 && $now >= strtotime($sanpham->khuyenmai[0]->start_time) && $now <= strtotime($sanpham->khuyenmai[0]->end_time))
                             <span class="reducedfrom">{{ number_format($sanpham->price) }}</span>
-                            <span class="actual">{{ number_format($sanpham->price - ($sanpham->price * $khuyenmai->sale / 100)) }}</span>
+                            <span class="actual">{{ number_format($sanpham->price - ($sanpham->price * $sanpham->khuyenmai[0]->sale / 100)) }}</span>
                         @else
                             <span class="actual">{{ number_format($sanpham->price) }}</span>
                         @endif

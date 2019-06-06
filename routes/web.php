@@ -129,7 +129,7 @@ Route::get('/tin-tuc', ['as' => 'danhsachtintuc', 'uses' => 'TinTucController@li
 
 Route::get('/gio-hang/add-cart/{id}', ['as' => 'addCart', 'uses' => 'ShoppingCartController@addCart']);
 
-Route::get('/gio-hang/update-cart', ['as' => 'updateCart', 'uses' => 'ShoppingCartController@updateCart']);
+Route::post('/gio-hang/update-cart', ['as' => 'updateCart', 'uses' => 'ShoppingCartController@updateCart']);
 
 Route::get('/gio-hang/delete-cart/{id}', ['as' => 'deleteCart', 'uses' => 'ShoppingCartController@deleteCart']);
 
