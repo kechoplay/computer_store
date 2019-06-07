@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ChiTietHoaDon;
+use App\HoaDon;
 use App\SanPham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -22,7 +24,16 @@ class ShoppingCartController extends Controller
         $listCart = Session::get('cart');
 
         if (isset($listCart[$id])) {
-            $listCart[$id]['quantity'] = $quantity != null ? $listCart[$id]['quantity'] + $quantity : $listCart[$id]['quantity'] + 1;
+            if ($quantity != null)
+                $finalQuantity = $listCart[$id]['quantity'] + $quantity;
+            else
+                $finalQuantity = $listCart[$id]['quantity']++;
+
+            if ($product->quantity < $finalQuantity)
+                $listCart[$id]['quantity'] = $product->quantity;
+            else
+                $listCart[$id]['quantity'] = $finalQuantity;
+
             Session::put('cart', $listCart);
         } else {
             $listCartId = [
@@ -88,6 +99,50 @@ class ShoppingCartController extends Controller
         Session::put('cart', $listCart);
 
         return redirect()->back();
+    }
+
+    public function checkout(Request $request)
+    {
+        $listCart = Session::get('cart');
+        if (!$listCart) return redirect()->route('index');
+        if (!$listCart  || !$request->TenKH || !$request->SDT || !$request->Email || !$request->DiaChi) return redirect()->back();
+
+        $hoaDon = HoaDon::create([
+            'customer_name' => $request->TenKH,
+            'phone' => $request->SDT,
+            'email' => $request->Email,
+            'address' => $request->DiaChi,
+            'note' => $request->GhiChu,
+            'payment_method' => $request->HinhThuc,
+            'time_buy' => date("Y-m-d H:i:s"),
+            'status' => 1,
+        ]);
+
+        $totalMoney = 0;
+        foreach ($listCart as $key => $cart) {
+            ChiTietHoaDon::create([
+                'order_id' => $hoaDon->id,
+                'product_id' => $key,
+                'quantity' => $cart['quantity'],
+                'price' => $cart['price']
+            ]);
+            $sanpham = SanPham::where('id', $key)->first();
+            $sale = $this->getSale($sanpham);
+            $listProduct[] = [
+                'id' => $key,
+                'quantity' => $cart['quantity'],
+                'price' => $cart['price'],
+                'price_origin' => $sanpham->price,
+                'sale' => $sale,
+                'product_name' => $sanpham->product_name,
+                'image' => $sanpham->image
+            ];
+            $totalMoney += $cart['price'] * $cart['quantity'];
+        }
+
+        Session::forget('cart');
+
+        return view('User.thanhtoan', compact('listProduct', 'totalMoney', 'hoaDon'));
     }
 
     public function getSale($sanpham)

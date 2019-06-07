@@ -179,55 +179,33 @@ $totalPrice = 0;
                             <div class="from_TTKH">
                                 <form action="{{ route('checkout') }}">
                                     <div class="row from_TT">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
+                                            <label>Họ tên</label>
                                             <input type="text" name="TenKH" class="form-control" placeholder="Họ và tên"
                                                    required>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12" style="margin-top: 15px;">
+                                            <label>Số điện thoại</label>
                                             <input type="text" name="SDT" class="form-control"
-                                                   placeholder="Số điện thoại"
-                                                   required>
+                                                   placeholder="Số điện thoại" required>
                                         </div>
-                                        <div class="col" style="margin-top: 15px;">
-                                            <input type="text" name="Email" class="form-control"
+                                        <div class="col-md-12" style="margin-top: 15px;">
+                                            <label>Email</label>
+                                            <input type="email" name="Email" class="form-control"
                                                    placeholder="Email (Để theo dõi quá trình nhận hàng)" required>
                                         </div>
-                                    </div>
-                                    <b style="margin-left: 20px;">Để được phục vụ nhanh hơn,
-                                        <a href="" class="hover_fromDC"> hãy chọn thêm</a> :</b>
-                                    <div class="row from_DC">
-                                        <div class="btn-group col-md-6">
-                                            <select class="form-control" name="thanhpho"
-                                                    placeholder="Chọn tỉnh, thành phố"
-                                                    id="">
-                                                <option value="Hà Nội">Hà Nội</option>
-                                                <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                                                <option value="Bắc Ninh">Bắc Ninh</option>
-                                                <option value="Bắc Giang">Bắc Giang</option>
-                                                <option value="Thanh Hóa">Thanh Hóa</option>
-                                                <option value="Ninh Bình">Ninh Bình</option>
-                                            </select>
+                                        <div class="col-md-12" style="margin-top: 15px;">
+                                            <label>Địa chỉ nhận hàng</label>
+                                            <textarea rows="5" name="DiaChi" class="form-control" required></textarea>
                                         </div>
-                                        <!-- <div class="btn-group col-md-6">
-                                            <select class="form-control" name="quanhuyen" placeholder="Chọn quận, huyện" id="">
-                                                <option value="Hà Nội">Hà Nội</option>
-                                                <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                                                <option value="Bắc Ninh">Bắc Ninh</option>
-                                                <option value="Bắc Giang">Bắc Giang</option>
-                                                <option value="Thanh Hóa">Thanh Hóa</option>
-                                                <option value="Ninh Bình">Ninh Bình</option>
-                                            </select>
-                                        </div> -->
-                                        <input class="form-control col-md-12" style="margin-bottom: 10px;" type="text"
-                                               name="DiaChi" placeholder="Số nhà, tên đường, phường/xã" required>
-                                        <!-- <h6>Thời gian giao:</h6>
-                                        <input class="form-control col-md-6" type="text" placeholder="Hôm nay + date"> -->
-                                        <input class="form-control col-md-12" style="margin-top: 10px;" type="text"
-                                               name="GhiChu" placeholder="Yêu cầu khác (không bắt buộc)">
+                                        <div class="col-md-12" style="margin-top: 15px;">
+                                            <label>Ghi chú</label>
+                                            <textarea rows="5" name="GhiChu" class="form-control" required></textarea>
+                                        </div>
                                     </div>
                                     <div class="row choosepayment">
                                         <a href="" class="payoffline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="GiaoHang"
+                                            <button type="submit" name="HinhThuc" value="1"
                                                     class="btn btn-primary">
                                                 thanh toán khi nhận hàng
                                                 <br>
@@ -235,8 +213,8 @@ $totalPrice = 0;
                                             </button>
                                         </a>
                                         <a href="" class="payonline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="ChuyenKhoan"
-                                                    class="btn btn-danger">thanh toán online
+                                            <button type="submit" name="HinhThuc" value="2"
+                                                    class="btn btn-primary">thanh toán online
                                                 <br>
                                                 <span>Dùng thẻ ATM (có internet Banking)</span>
                                             </button>

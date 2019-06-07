@@ -1,0 +1,123 @@
+.thanhtoan {
+    background-color: #F0F0F0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.thanhtoan .from_thongbao {
+    padding-bottom: 50px !important;
+}
+
+.thanhtoan .from_thongbao .from_DHTC {
+    background-color: #fff;
+    padding: 30px;
+    border-right: 0.5px solid #ccc;
+}
+
+.thanhtoan .from_thongbao .from_DHTC span {
+    color: #14B61B;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .camon {
+    margin-top: 15px;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .from_DH ul {
+    padding-left: 15px;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .from_DH span {
+    color: #C82333;
+    font-size: 20px;
+}
+
+.thanhtoan .from_thongbao .from_DHTC h4 {
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-transform: uppercase;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .from_SP {
+    margin-top: 30px !important;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .from_SP img {
+    width: 100%;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .from_SP h5 {
+    color: #C82333;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .muathem {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.thanhtoan .from_thongbao .from_DHTC .muathem button {
+    background-color: #fff !important;
+    border: 0.5px solid #0069D9;
+    color: #0069D9;
+    text-transform: uppercase;
+    position: unset;
+}
+
+.thanhtoan .from_thongbao .from_SPKM {
+    background-color: #fff;
+    padding-top: 20px;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP h5 {
+    color: #000;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP img {
+    width: 100%;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP .info {
+    border-top: 0.5px solid #7F7F7F;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP .info h4 {
+    text-transform: uppercase;
+    color: #007bff;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP .info .price {
+    color: #E74037;
+    font-size: 19px;
+    margin-bottom: 0 !important;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP .info p {
+    font-size: 14px;
+    color: #5F5F5F;
+}
+
+.thanhtoan .from_thongbao .from_SPKM .from_TTSP .buynow button {
+    text-transform: uppercase;
+}
+
+.from_DH {
+    margin-top: 25px;
+}
+
+.small, small {
+    font-size: 80% !important;
+    font-weight: 400 !important;
+}
+
+.h6, h6 {
+    font-size: 1rem;
+}

@@ -67,7 +67,7 @@
 }
 
 .giohang .content-giohang .main-giohang button {
-    margin-left: 15px;
+
 }
 
 .giohang .content-giohang h4 {
@@ -108,8 +108,8 @@
 }
 
 .giohang .content-giohang .choosepayment {
-    width: 90%;
-    margin: 20px auto !important;
+    /*margin: 20px auto !important;*/
+    margin-top: 20px;
     padding-bottom: 20px !important;
 }
 

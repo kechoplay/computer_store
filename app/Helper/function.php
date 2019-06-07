@@ -24,5 +24,8 @@ function getTinTuc()
 function getShoppingCart()
 {
     $listCart = \Illuminate\Support\Facades\Session::get('cart');
-    return $listCart;
+    if ($listCart != null)
+        return $listCart;
+    else
+        return [];
 }
