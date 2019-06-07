@@ -120,14 +120,17 @@ class ShoppingCartController extends Controller
 
         $totalMoney = 0;
         foreach ($listCart as $key => $cart) {
+            $sanpham = SanPham::where('id', $key)->first();
+            $sale = $this->getSale($sanpham);
+
             ChiTietHoaDon::create([
                 'order_id' => $hoaDon->id,
                 'product_id' => $key,
                 'quantity' => $cart['quantity'],
-                'price' => $cart['price']
+                'price' => $sanpham->price,
+                'sale' => $sale,
             ]);
-            $sanpham = SanPham::where('id', $key)->first();
-            $sale = $this->getSale($sanpham);
+
             $listProduct[] = [
                 'id' => $key,
                 'quantity' => $cart['quantity'],

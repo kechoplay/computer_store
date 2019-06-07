@@ -94,6 +94,11 @@
                                     <i class="fa fa-bar-chart-o"></i>Quản lý hóa đơn
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('listWarrantyView') }}">
+                                    <i class="fa fa-bar-chart-o"></i>Quản lý phiếu bảo hành
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

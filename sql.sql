@@ -147,10 +147,11 @@ CREATE TABLE `chitiethoadon` (
   `product_id` int(11) DEFAULT NULL COMMENT 'id sản phẩm',
   `quantity` int(11) DEFAULT NULL COMMENT 'số lượng mua',
   `price` float DEFAULT NULL COMMENT 'đơn giá',
+  `sale` int(11) DEFAULT NULL COMMENT 'giảm giá',
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 CREATE TABLE `hoadon` (
@@ -162,8 +163,8 @@ CREATE TABLE `hoadon` (
   `address` text COLLATE utf8_unicode_ci COMMENT 'địa chỉ giao hàng',
   `note` text COLLATE utf8_unicode_ci COMMENT 'ghi chú',
   `payment_method` int(11) DEFAULT NULL COMMENT '1: COD; 2: online',
-  `status` int(11) DEFAULT NULL COMMENT 'trạng thái giao dịch. 1: Chưa xử lý; 2: Đang xử lý; 3: Đã xử lý',
+  `status` int(11) DEFAULT NULL COMMENT 'trạng thái giao dịch. 1: Chưa xử lý; 2: Đã xử lý; 3: Đã giao; 4: Đã hủy',
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

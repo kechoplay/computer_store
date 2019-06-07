@@ -108,6 +108,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('/list-orders', ['as' => 'listOrderView', 'uses' => 'HoaDonController@index']);
 
     Route::get('/order-detail/{id}', ['as' => 'orderDetailView', 'uses' => 'HoaDonController@orderDetail']);
+
+    Route::get('/order/approve/{id}', ['as' => 'approveOrder', 'uses' => 'HoaDonController@approve']);
+
+    Route::get('/order/cancel/{id}', ['as' => 'cancelOrder', 'uses' => 'HoaDonController@cancel']);
+
+    Route::get('/order/ship/{id}', ['as' => 'shipOrder', 'uses' => 'HoaDonController@ship']);
+
+    Route::get('/order/cancel-ship/{id}', ['as' => 'cancelShipOrder', 'uses' => 'HoaDonController@cancelShip']);
+// phiếu bảo hành
+    Route::get('/warranty', ['as' => 'listWarrantyView', 'uses' => 'PhieuBaoHanhController@index']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);

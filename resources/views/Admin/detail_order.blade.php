@@ -37,18 +37,28 @@
                         <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
                             <span>{{ $errors->first('error') ? $errors->first('error') : '' }}</span>
                         </div>
-                        <form method="post" data-parsley-validate enctype="multipart/form-data" class="form-horizontal form-label-left">
+                        <form method="post" data-parsley-validate enctype="multipart/form-data"
+                              class="form-horizontal form-label-left">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-6" for="TrangThai">Trạng thái
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-6">
-                                    <b>{{$hoadon->status}} </b>
+                                    @if($hoadon->status == '1')
+                                        <b>Chưa xử lí</b>
+                                    @elseif($hoadon->status == '2')
+                                        <b>Đã xử lý</b>
+                                    @elseif($hoadon->status == '3')
+                                        <b>Đã giao</b>
+                                    @elseif($hoadon->status == '4')
+                                        <b>Đã hủy</b>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-3" for="HinhThuc">Hình thức thanh toán
+                                <label class="control-label col-md-3 col-sm-3 col-xs-3" for="HinhThuc">Hình thức thanh
+                                    toán
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
@@ -56,14 +66,7 @@
                                 </div>
                             </div>
                             <div class="form-horizontal">
-                            <!-- <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-3" for="MaKH">Khách hàng
-                  <span class="required">*</span>
-                </label>
-                <div class="col-md-9 col-sm-9 col-xs-9">
-                  <b>{{isset($hoadon->khachhang) ? $hoadon->khachhang->TenKH : ' '}} </b>
-                </div>
-              </div> -->
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TenKH">Tên Khách hàng
                                         <span class="required">*</span>
@@ -97,7 +100,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DiaChi">Chi tiết đơn hàng
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DiaChi">Chi tiết đơn
+                                        hàng
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
@@ -117,26 +121,26 @@
                                                 <tr>
                                                     <td>
                                                         {{$chitiethoadon->sanpham->product_name}} <br>
-                                                        @if ($chitiethoadon->sanpham->SoLuong > 0)
-                                                            <span>Trong kho còn <b>{{$chitiethoadon->sanpham->SoLuong}}</b> sản phẩm</span>
+                                                        @if ($chitiethoadon->sanpham->quantity > 0)
+                                                            <span>Trong kho còn <b>{{ $chitiethoadon->sanpham->quantity }}</b> sản phẩm</span>
                                                         @else
                                                             <span class="text-danger">Hết hàng</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{$chitiethoadon->SoLuong}}
+                                                        {{ $chitiethoadon->quantity }}
                                                     </td>
                                                     <td>
-                                                        {{number_format($chitiethoadon->Gia)}}
+                                                        {{ number_format($chitiethoadon->price) }}
                                                     </td>
                                                     <td>
-                                                        {{$chitiethoadon->Giam}}
+                                                        {{ $chitiethoadon->sale }}
                                                     </td>
                                                     <td>
-                                                        {{number_format($chitiethoadon->Gia*(1-$chitiethoadon->Giam/100))}}
+                                                        {{ number_format($chitiethoadon->price * (1 - $chitiethoadon->sale / 100)) }}
                                                     </td>
                                                     <td>
-                                                        {{number_format($chitiethoadon->Gia*(1-$chitiethoadon->Giam/100) * $chitiethoadon->SoLuong)}}
+                                                        {{ number_format($chitiethoadon->price * (1 - $chitiethoadon->sale / 100) * $chitiethoadon->quantity) }}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -160,7 +164,8 @@
                             <div id="print-area" class="hidden">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="HinhThuc">Hình thức thanh toán
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="HinhThuc">Hình thức
+                                            thanh toán
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
@@ -184,7 +189,8 @@
                   </div>
                 </div> -->
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TenKH">Tên Khách hàng
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TenKH">Tên Khách
+                                            hàng
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
@@ -216,7 +222,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DiaChi">Chi tiết đơn hàng
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DiaChi">Chi tiết
+                                            đơn hàng
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -232,25 +239,25 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach ($danhsachchitiethoadon as $chitiethoadon)
+                                                @foreach ($hoadon->chitiethoadon as $chitiethoadon)
                                                     <tr>
                                                         <td>
-                                                            {{$chitiethoadon->sanpham->TenSP}}
+                                                            {{ $chitiethoadon->sanpham->product_name }}
                                                         </td>
                                                         <td>
-                                                            {{$chitiethoadon->SoLuong}}
+                                                            {{ $chitiethoadon->quantity }}
                                                         </td>
                                                         <td>
-                                                            {{number_format($chitiethoadon->Gia)}}
+                                                            {{ number_format($chitiethoadon->price) }}
                                                         </td>
                                                         <td>
-                                                            {{$chitiethoadon->Giam}}
+                                                            {{ $chitiethoadon->sale }}
                                                         </td>
                                                         <td>
-                                                            {{number_format($chitiethoadon->giathanhtoan())}}
+                                                            {{ number_format($chitiethoadon->price * (1 - $chitiethoadon->sale / 100)) }}
                                                         </td>
                                                         <td>
-                                                            {{number_format($chitiethoadon->tongtien())}}
+                                                            {{ number_format($chitiethoadon->price * (1 - $chitiethoadon->sale / 100) * $chitiethoadon->quantity) }}
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -273,20 +280,29 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <a href="{{route('quanlyhoadon.list')}}" class="btn btn-primary">Quay lại</a>
-                                    @if($hoadon->TrangThai=='Chưa duyệt')
-                                        <a href="{{route('quanlyhoadon.approve',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-success">Duyệt</a>
-                                        <a href="{{route('quanlyhoadon.cancel',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-danger">Hủy</a>
+                                    <a href="{{route('listOrderView')}}" class="btn btn-primary">Quay lại</a>
+                                    @if($hoadon->status == 1)
+                                        <a href="{{route('approveOrder',['id' => $hoadon->id])}}"
+                                           class="btn btn-success">Duyệt</a>
+                                        <a href="{{route('cancelOrder',['id' => $hoadon->id])}}" class="btn btn-danger">Hủy</a>
                                     @endif
-                                    @if($hoadon->TrangThai=='Đã duyệt')
-                                        <button type="button" onclick="printDiv('print-area')" class="btn btn-info">In hóa đơn</button>
-                                        <a href="{{route('quanlyphieubaohanh.list',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-primary">Phiếu bảo hành</a>
-                                        <a href="{{route('quanlyhoadon.giaohang',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-success">Giao hàng</a>
-                                        <a href="{{route('quanlyhoadon.huygiaohang',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-danger">Hủy</a>
+                                    @if($hoadon->status == 2)
+                                        <button type="button" onclick="printDiv('print-area')" class="btn btn-info">In
+                                            hóa đơn
+                                        </button>
+                                        <a href="{{route('listWarrantyView')}}" class="btn btn-primary">Phiếu bảo
+                                            hành</a>
+                                        <a href="{{route('shipOrder',['id' => $hoadon->id])}}"
+                                           class="btn btn-success">Giao hàng</a>
+                                        <a href="{{route('cancelShipOrder',['id' => $hoadon->id])}}"
+                                           class="btn btn-danger">Hủy</a>
                                     @endif
-                                    @if($hoadon->TrangThai=='Đã giao hàng')
-                                        <button type="button" onclick="printDiv('print-area')" class="btn btn-info">In hóa đơn</button>
-                                        <a href="{{route('quanlyphieubaohanh.list',['MaHD'=>$hoadon->MaHD])}}" class="btn btn-primary">Phiếu bảo hành</a>
+                                    @if($hoadon->status == 3)
+                                        <button type="button" onclick="printDiv('print-area')" class="btn btn-info">In
+                                            hóa đơn
+                                        </button>
+                                        <a href="{{route('listWarrantyView')}}"
+                                           class="btn btn-primary">Phiếu bảo hành</a>
                                     @endif
                                 </div>
                             </div>
