@@ -168,3 +168,18 @@ CREATE TABLE `hoadon` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `phieubaohanh` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `order_id` int(11) DEFAULT NULL COMMENT 'id hóa đơn',
+    `user_id` int(11) DEFAULT NULL COMMENT 'id khách hàng',
+    `product_id` int(11) DEFAULT NULL COMMENT 'id sản phẩm',
+    `customer_name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'tên khách hàng',
+    `phone` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'số điện thoại',
+    `buy_date` datetime DEFAULT NULL COMMENT 'ngày mua',
+    `warranty` int(11) DEFAULT NULL COMMENT 'thời hạn bảo hành',
+    `created_at` datetime NOT NULL,
+    `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -74,7 +74,7 @@ class HoaDonController extends Controller
 
     public function cancel($id){
         $hoadon = HoaDon::find($id);
-        $hoadon->TrangThai = 4;
+        $hoadon->status = 4;
         $hoadon->save();
         return redirect()->back();
     }
