@@ -4,7 +4,7 @@
     <!-- Datatables -->
     <link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 @endpush()
@@ -13,7 +13,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Quản lý tài khoản</h3>
+                <h3>Quản lý hóa đơn</h3>
             </div>
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -31,46 +31,48 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Danh sách tài khoản</h2>
+                        <h2>Danh sách hóa đơn</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <a href="{{ route('addNewUserView') }}">
-                            <button type="button" class="btn btn-primary">Thêm tài khoản</button>
-                        </a>
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
-                               cellspacing="0" width="100%">
+                        <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
+                            <span>{{ $errors->first('error') ? $errors->first('error') : '' }}</span>
+                        </div>
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Ảnh đại diện</th>
-                                <th>Tên đăng nhập</th>
-                                <th>Tên đầy đủ</th>
-                                <th>Địa chỉ</th>
-                                <th>Email</th>
-                                <th>Điện thoại</th>
-                                <th>Ngày sinh</th>
-                                <th>Giới tính</th>
-                                <th></th>
+                                <th>Mã hóa đơn</th>
+                                <th>Khách hàng</th>
+                                <th>Số điện thoại </th>
+                                <th>Thời gian</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($listUser as $user)
+                            @foreach($danhsachhoadon as $hoadon)
                                 <tr>
-                                    <td><img src="{{ $user['image'] }}" style="width: 100px;"></td>
-                                    <td>{{ $user['username'] }}</td>
-                                    <td>{{ $user['fullname'] }}</td>
-                                    <td>{{ $user['address'] }}</td>
-                                    <td>{{ $user['email'] }}</td>
-                                    <td>{{ $user['mobile'] }}</td>
-                                    <td>{{ \Carbon\Carbon::createFromTimestamp(strtotime($user['birthday']))->format('d-m-Y') }}</td>
-                                    <td>{{ $user['gender'] == 1 ? 'Nam' : 'Nữ' }}</td>
+                                    <td>{{ $hoadon['id'] }}</td>
+                                    <td>{{ $hoadon['customer_name'] }}</td>
+                                    <td>{{ $hoadon['phone'] }}</td>
+                                    <td>{{ $hoadon['time_buy'] }}</td>
                                     <td>
-                                        <a href="{{ route('deleteUser', ['id' => $user['id']]) }}"
-                                           onclick="return confirm('Bạn có chắc muốn xóa không?')">
-                                            <button type="button" class="btn btn-danger">Xóa</button>
+                                        @if($hoadon['status'] == '1')
+                                            <span class="label label-warning">Chưa xử lí</span>
+                                        @elseif($hoadon['status'] == '2')
+                                            <span class="label label-success">Đã xử lý</span>
+                                        @elseif($hoadon['status'] == '3')
+                                            <span class="label label-success">Đã giao</span>
+                                        @elseif($hoadon['status'] == '4')
+                                            <span class="label label-danger">Đã hủy</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('orderDetailView',['id' => $hoadon['id']]) }}">
+                                            <button type="button" class="btn btn-info">Xem chi tiết</button>
                                         </a>
                                     </td>
                                 </tr>

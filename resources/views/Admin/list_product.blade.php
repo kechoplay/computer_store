@@ -26,20 +26,16 @@
                 </div>
             </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Quản lý sản phẩm </h2>
+                        <h2>Danh sách sản phẩm </h2>
                         <div class="clearfix"></div>
                         <a href="{{route('createProductView')}}">
                             <button type="button" class="btn btn-info">Tạo mới</button>
                         </a>
-
-
                     </div>
                     <div class="x_content">
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive"

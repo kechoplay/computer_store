@@ -89,6 +89,11 @@
                                     <i class="fa fa-bar-chart-o"></i>Quản lý tin tức
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('listOrderView') }}">
+                                    <i class="fa fa-bar-chart-o"></i>Quản lý hóa đơn
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

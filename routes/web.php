@@ -104,6 +104,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/update-new/{id}', ['as' => 'updateNew', 'uses' => 'TinTucController@edit']);
 
     Route::get('/delete-new/{id}', ['as' => 'deleteNew', 'uses' => 'TinTucController@delete']);
+// hoa don
+    Route::get('/list-orders', ['as' => 'listOrderView', 'uses' => 'HoaDonController@index']);
+
+    Route::get('/order-detail/{id}', ['as' => 'orderDetailView', 'uses' => 'HoaDonController@orderDetail']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);

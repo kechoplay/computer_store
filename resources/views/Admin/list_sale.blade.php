@@ -26,9 +26,7 @@
                 </div>
             </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -38,8 +36,6 @@
                         <a href="{{route('createNewSaleView')}}">
                             <button type="button" class="btn btn-info">Tạo mới</button>
                         </a>
-
-
                     </div>
                     <div class="x_content">
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive"
