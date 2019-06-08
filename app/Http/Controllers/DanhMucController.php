@@ -101,6 +101,9 @@ class DanhMucController extends Controller
         if (count($category->children) > 0)
             return redirect()->back()->withErrors(['error' => 'Đây là danh mục cha, bạn phải xóa hết danh mục con thì mới xóa được danh mục cha']);
 
+        if ($category->sanpham->count())
+            return redirect()->back()->withErrors(['error' => 'Bạn hãy xóa hết sản phẩm thuộc danh mục này']);
+
         $category->delete();
         return redirect()->back();
     }
