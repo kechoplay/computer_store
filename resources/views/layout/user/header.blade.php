@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a href="{{ route('index') }}"><img src="/images/logo.png" alt=""/></a>
             </div>
             <ul class="shopping_grid">
-                <a href="login.html">
+                <a href="{{ route('loginView') }}">
                     <li>Đăng nhập</li>
                 </a>
                 <a href="{{ route('cart') }}">
@@ -154,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main">
     <div class="content_top">
         <div class="container">
-            @if($currentRoute != 'gio-hang' && $currentRoute != 'gio-hang/thanh-toan')
+            @if($currentRoute != 'gio-hang' && $currentRoute != 'gio-hang/thanh-toan' && $currentRoute != 'login' && $currentRoute != 'register')
                 <div class="col-md-3 sidebar_box">
                 <div class="sidebar">
                     <div class="menu_box">
