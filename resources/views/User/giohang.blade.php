@@ -115,88 +115,33 @@ $totalPrice = 0;
                             </div>
                         </div>
                         <hr>
-                        @if(Session::get('dangnhap'))
-                            <div class="from_TTKH">
-                                <form action="{{route('dathang.thanhtoan')}}">
-                                    <div class="row from_TT">
-                                        <div class="col-md-6">
-                                            <input type="text" name="TenKH" class="form-control" placeholder="Họ và tên"
-                                                   value="{{Session::get('dangnhap')->TenKH}}" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="SDT" class="form-control"
-                                                   placeholder="Số điện thoại"
-                                                   value="{{Session::get('dangnhap')->SDT}}" required>
-                                        </div>
-                                        <div class="col" style="margin-top: 15px;">
-                                            <input type="text" name="Email" class="form-control" placeholder="Email"
-                                                   value="{{Session::get('dangnhap')->Email}}" required>
-                                        </div>
-                                    </div>
-                                    <b style="margin-left: 20px;">Để được phục vụ nhanh hơn,
-                                        <a href="" class="hover_fromDC"> hãy chọn thêm</a> :</b>
-                                    <div class="row from_DC">
-                                        <div class="btn-group col-md-6">
-                                            <select class="form-control" name="thanhpho"
-                                                    placeholder="Chọn tỉnh, thành phố"
-                                                    id="">
-                                                <option value="Hà Nội">Hà Nội</option>
-                                                <option value="Vĩnh Phúc">Vĩnh Phúc</option>
-                                                <option value="Bắc Ninh">Bắc Ninh</option>
-                                                <option value="Bắc Giang">Bắc Giang</option>
-                                                <option value="Thanh Hóa">Thanh Hóa</option>
-                                                <option value="Ninh Bình">Ninh Bình</option>
-                                            </select>
-                                        </div>
-                                        <input class="form-control col-md-12" style="margin-bottom: 10px;" type="text"
-                                               name="DiaChi" placeholder="Số nhà, tên đường, phường/xã"
-                                               value="{{Session::get('dangnhap')->DiaChi}}" required>
-                                        <!-- <h6>Thời gian giao:</h6>
-                                        <input class="form-control col-md-6" type="text" placeholder="Hôm nay + date"> -->
-                                        <input class="form-control col-md-12" style="margin-top: 10px;" type="text"
-                                               name="GhiChu" placeholder="Yêu cầu khác (không bắt buộc)">
-                                    </div>
-                                    <div class="row choosepayment">
-                                        <a href="" class="payoffline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="GiaoHang"
-                                                    class="btn btn-primary">
-                                                thanh toán khi nhận hàng
-                                                <br>
-                                                <span>Xem hàng trước</span>
-                                            </button>
-                                        </a>
-                                        <a href="" class="payonline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="ChuyenKhoan"
-                                                    class="btn btn-danger">thanh toán online
-                                                <br>
-                                                <span>Dùng thẻ ATM (có internet Banking)</span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </form>
-                            </div>
-                        @else
+                        @if(\Illuminate\Support\Facades\Auth::guard('users')->check())
                             <div class="from_TTKH">
                                 <form action="{{ route('checkout') }}">
                                     <div class="row from_TT">
                                         <div class="col-md-12">
                                             <label>Họ tên</label>
                                             <input type="text" name="TenKH" class="form-control" placeholder="Họ và tên"
-                                                   required>
+                                                   required
+                                                   value="{{ \Illuminate\Support\Facades\Auth::guard('users')->user()->name }}">
                                         </div>
                                         <div class="col-md-12" style="margin-top: 15px;">
                                             <label>Số điện thoại</label>
                                             <input type="text" name="SDT" class="form-control"
-                                                   placeholder="Số điện thoại" required>
+                                                   placeholder="Số điện thoại" required
+                                                   value="{{ \Illuminate\Support\Facades\Auth::guard('users')->user()->phone }}">
                                         </div>
                                         <div class="col-md-12" style="margin-top: 15px;">
                                             <label>Email</label>
                                             <input type="email" name="Email" class="form-control"
-                                                   placeholder="Email (Để theo dõi quá trình nhận hàng)" required>
+                                                   placeholder="Email (Để theo dõi quá trình nhận hàng)" required
+                                                   value="{{ \Illuminate\Support\Facades\Auth::guard('users')->user()->email }}">
                                         </div>
                                         <div class="col-md-12" style="margin-top: 15px;">
                                             <label>Địa chỉ nhận hàng</label>
-                                            <textarea rows="5" name="DiaChi" class="form-control" required></textarea>
+                                            <textarea rows="5" name="DiaChi" class="form-control" required>
+                                                {{ \Illuminate\Support\Facades\Auth::guard('users')->user()->address }}
+                                            </textarea>
                                         </div>
                                         <div class="col-md-12" style="margin-top: 15px;">
                                             <label>Ghi chú</label>
@@ -222,6 +167,8 @@ $totalPrice = 0;
                                     </div>
                                 </form>
                             </div>
+                        @else
+                            <p>Bạn hãy đăng nhập để mua hàng</p>
                         @endif
                     @else
                         <div>

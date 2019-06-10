@@ -51,7 +51,7 @@ class ShoppingCartController extends Controller
     {
         $listCart = Session::get('cart');
         $listProduct = [];
-        if (count($listCart) > 0) {
+        if ($listCart != null) {
             foreach ($listCart as $key => $cart) {
                 $sanpham = SanPham::where('id', $key)->first();
                 $sale = $this->getSale($sanpham);

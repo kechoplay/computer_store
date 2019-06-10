@@ -149,8 +149,6 @@ Route::get('/gio-hang/delete-cart/{id}', ['as' => 'deleteCart', 'uses' => 'Shopp
 
 Route::get('/gio-hang', ['as' => 'cart', 'uses' => 'ShoppingCartController@cart']);
 
-Route::get('/gio-hang/thanh-toan', ['as' => 'checkout', 'uses' => 'ShoppingCartController@checkout']);
-
 Route::get('/login', ['as' => 'loginView', 'uses' => 'UserController@loginForm']);
 
 Route::post('/login', ['as' => 'postLogin', 'uses' => 'UserController@login']);
@@ -158,3 +156,9 @@ Route::post('/login', ['as' => 'postLogin', 'uses' => 'UserController@login']);
 Route::get('/register', ['as' => 'registerView', 'uses' => 'UserController@registerForm']);
 
 Route::post('/register', ['as' => 'postRegister', 'uses' => 'UserController@register']);
+
+Route::group(['middleware' => ['check_login_user']], function () {
+    Route::get('/gio-hang/thanh-toan', ['as' => 'checkout', 'uses' => 'ShoppingCartController@checkout']);
+
+    Route::get('/logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
+});

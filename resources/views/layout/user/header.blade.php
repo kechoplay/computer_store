@@ -81,9 +81,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a href="{{ route('index') }}"><img src="/images/logo.png" alt=""/></a>
             </div>
             <ul class="shopping_grid">
+                @if(!\Illuminate\Support\Facades\Auth::guard('users')->check())
                 <a href="{{ route('loginView') }}">
                     <li>Đăng nhập</li>
                 </a>
+                    @else
+                    <a href="{{ route('logout') }}">
+                        <li>Thoát</li>
+                    </a>
+                @endif
                 <a href="{{ route('cart') }}">
                     <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;<img src="/images/bag.png" alt=""/>
                     </li>

@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminAccess;
+use App\Http\Middleware\CheckLoginUser;
 use App\Http\Middleware\SuperAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -63,7 +64,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin_access' => AdminAccess::class,
-        'super_admin' => SuperAdmin::class
+        'super_admin' => SuperAdmin::class,
+        'check_login_user' => CheckLoginUser::class
     ];
 
     /**
