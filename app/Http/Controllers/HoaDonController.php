@@ -6,6 +6,7 @@ use App\ChiTietHoaDon;
 use App\HoaDon;
 use App\PhieuBaoHanh;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HoaDonController extends Controller
 {
@@ -40,7 +41,7 @@ class HoaDonController extends Controller
             if (isset($sanpham->warranty) && $sanpham->warranty > 0) {
                 PhieuBaoHanh::create([
                     'order_id' => $id,
-//                    'user_id' => '',
+                    'user_id' => Auth::guard('users')->user()->id,
                     'product_id' => $chitiethoadon->product_id,
                     'customer_name' => $hoadon->customer_name,
                     'phone' => $hoadon->phone,
@@ -52,8 +53,8 @@ class HoaDonController extends Controller
         return redirect()->back();
     }
 
-    public function ship($MaHD){
-        $hoadon = HoaDon::find($MaHD);
+    public function ship($id){
+        $hoadon = HoaDon::find($id);
         $hoadon->status = 3;
         $hoadon->save();
         return redirect()->back();
