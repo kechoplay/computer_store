@@ -6,6 +6,7 @@ use App\ChiTietHoaDon;
 use App\HoaDon;
 use App\SanPham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class ShoppingCartController extends Controller
@@ -108,6 +109,7 @@ class ShoppingCartController extends Controller
         if (!$listCart  || !$request->TenKH || !$request->SDT || !$request->Email || !$request->DiaChi) return redirect()->back();
 
         $hoaDon = HoaDon::create([
+            'user_id' => Auth::guard('users')->user()->id,
             'customer_name' => $request->TenKH,
             'phone' => $request->SDT,
             'email' => $request->Email,
