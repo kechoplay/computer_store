@@ -82,11 +82,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <ul class="shopping_grid">
                 @if(!\Illuminate\Support\Facades\Auth::guard('users')->check())
-                <a href="{{ route('loginView') }}">
+                <a href="{{ route('loginUserView') }}">
                     <li>Đăng nhập</li>
                 </a>
                     @else
-                    <a href="{{ route('logout') }}">
+                    <a href="{{ route('logoutUser') }}">
                         <li>Thoát</li>
                     </a>
                 @endif

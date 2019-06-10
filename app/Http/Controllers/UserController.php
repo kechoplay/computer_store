@@ -105,7 +105,7 @@ class UserController extends Controller
         $data['gender'] = $request->gender;
         User::create($data);
 
-        return redirect()->route('loginView');
+        return redirect()->route('loginUserView');
     }
 
     public function logout()
