@@ -16,4 +16,12 @@ class HoaDon extends Model
     {
         return $this->hasMany('App\ChiTietHoaDon','order_id', 'id');
     }
+
+    public function tongtien() {
+        $tongtien = 0;
+        foreach($this->chitiethoadon as $chitiethoadon) {
+            $tongtien += $chitiethoadon->tongtien();
+        }
+        return $tongtien;
+    }
 }

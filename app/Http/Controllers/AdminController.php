@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\DanhMuc;
+use App\HoaDon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -80,7 +82,7 @@ class AdminController extends Controller
         $birthday = $request->birthday;
         $gender = $request->gender;
 
-        $validate = Validator::make($request->all(),[
+        $validate = Validator::make($request->all(), [
             'username' => 'required|unique:admin',
             'password' => 'required',
             'password2' => 'required|same:password'
@@ -120,5 +122,62 @@ class AdminController extends Controller
         return redirect()->route('listUserView');
     }
 
+    public function statistic(Request $request)
+    {
+        $kieu = 'ngay';
+        if (isset($request->kieu)) $kieu = $request->kieu;
 
+        $TuNgay = Carbon::now()->startOfMonth();
+        if ($request->TuNgay) $TuNgay = Carbon::parse($request->TuNgay);
+
+        $DenNgay = Carbon::now()->endOfMonth();
+        if ($request->DenNgay) $DenNgay = Carbon::parse($request->DenNgay);
+
+        $NgayDau = $TuNgay->copy()->startOfDay();
+
+        if ($request->kieu == 'tuan') {
+            $NgayCuoi = $NgayDau->copy()->endOfWeek();
+        } else if ($request->kieu == 'thang') {
+            $NgayCuoi = $NgayDau->copy()->endOfMonth();
+        } else if ($request->kieu == 'nam') {
+            $NgayCuoi = $NgayDau->copy()->endOfYear();
+        } else {
+            $NgayCuoi = $NgayDau->copy()->endOfDay();
+        }
+        $danhsachdoanhthu = [];
+        $danhsachngay = [];
+        do {
+            $danhsachhoadontrongngay = HoaDon::where('status', 3)
+                ->where('time_buy', '>=', $NgayDau->format('Y-m-d H:i:s'))
+                ->where('time_buy', '<=', $NgayCuoi->format('Y-m-d H:i:s'))
+                ->get();
+            $doanhthu = 0;
+            foreach ($danhsachhoadontrongngay as $hoadon) {
+                $doanhthu += $hoadon->tongtien();
+            }
+
+            if ($doanhthu > 0) {
+                if ($request->kieu == null) {
+                    $danhsachngay[] = $NgayDau->toDateString();
+                } else {
+                    $danhsachngay[] = $NgayDau->toDateString() . ' - ' . $NgayCuoi->toDateString();
+                }
+                $danhsachdoanhthu[] = $doanhthu;
+            }
+            $NgayDau = $NgayCuoi->copy()->addDay();
+            if ($request->kieu == 'tuan') {
+                $NgayCuoi = $NgayDau->copy()->endOfWeek();
+            } else if ($request->kieu == 'thang') {
+                $NgayCuoi = $NgayDau->copy()->endOfMonth();
+            } else if ($request->kieu == 'nam') {
+                $NgayCuoi = $NgayDau->copy()->endOfYear();
+            } else {
+                $NgayCuoi = $NgayDau->copy()->endOfDay();
+            }
+        } while ($NgayDau->copy()->diffInDays($DenNgay, false) > 0);
+
+        $danhsachhoadon = HoaDon::where('status', 3)->where('time_buy', '>=', $TuNgay)->where('time_buy', '<=', $DenNgay)->get();
+
+        return view('Admin.statistic', compact('danhsachngay', 'danhsachdoanhthu', 'danhsachhoadon', 'TuNgay', 'DenNgay', 'kieu'));
+    }
 }

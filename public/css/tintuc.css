@@ -1,0 +1,75 @@
+.tintuc {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.tintuc .menu-tintuc {
+  border-bottom: 0.5px solid #5c5c5c;
+  margin: 0;
+}
+
+.tintuc .menu-tintuc a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #333;
+  padding-right: 20px;
+}
+
+.tintuc .menu-tintuc a:hover {
+  color: #288ad6;
+}
+
+.tintuc .content-tintuc {
+  margin-top: 20px !important;
+  margin: 0;
+}
+
+.tintuc .content-tintuc img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.tintuc .content-tintuc a {
+  text-decoration: none;
+  color: #333;
+}
+
+.tintuc .content-tintuc .laytintuc {
+  margin-bottom: 15px !important;
+}
+
+.tintuc .content-tintuc .laytintuc h3 {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.tintuc .content-tintuc .laytintuc span {
+  color: #288ad6;
+  font-size: 12px;
+}
+
+.tintuc .content-tintuc .laytintuc:hover h3 {
+  color: #288ad6;
+}
+
+.tintuc .content-tintuc .right:hover {
+  color: #288ad6;
+  margin-bottom: 15px !important;
+}
+
+.tintuc .content-tintuc .right h3 {
+  font-size: 16px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.content-tintuc h1 {
+  font-size: 24px;
+  color: #288ad6;
+  width: 100%;
+}
+
+.content-tintuc ul li {
+  list-style: none;
+  font-size: 12px;
+}

@@ -15,6 +15,7 @@ class UserController extends Controller
     {
         $this->middleware('guest');
     }
+
     public function loginForm()
     {
         if (Auth::guard('users')->check())

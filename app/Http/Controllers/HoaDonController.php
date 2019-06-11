@@ -41,7 +41,7 @@ class HoaDonController extends Controller
             if (isset($sanpham->warranty) && $sanpham->warranty > 0) {
                 PhieuBaoHanh::create([
                     'order_id' => $id,
-                    'user_id' => Auth::guard('users')->user()->id,
+                    'user_id' => $hoadon->user_id,
                     'product_id' => $chitiethoadon->product_id,
                     'customer_name' => $hoadon->customer_name,
                     'phone' => $hoadon->phone,

@@ -46,6 +46,18 @@
 
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
 @stack('js')
 </body>
 </html>

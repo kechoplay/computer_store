@@ -3,7 +3,7 @@ $danhmuc = getDanhMuc();
 $tintuc = getTinTuc();
 $shoppingCart = getShoppingCart();
 $totalCart = count($shoppingCart);
-$currentRoute = \Illuminate\Support\Facades\Route::getCurrentRoute()->uri;
+$currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
 ?>
         <!DOCTYPE HTML>
 <html>
@@ -82,16 +82,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <ul class="shopping_grid">
                 @if(!\Illuminate\Support\Facades\Auth::guard('users')->check())
-                <a href="{{ route('loginUserView') }}">
-                    <li>Đăng nhập</li>
-                </a>
-                    @else
+                    <a href="{{ route('loginUserView') }}">
+                        <li>Đăng nhập</li>
+                    </a>
+                @else
                     <a href="{{ route('logoutUser') }}">
                         <li>Thoát</li>
                     </a>
                 @endif
                 <a href="{{ route('cart') }}">
-                    <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;<img src="/images/bag.png" alt=""/>
+                    <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;<img src="/images/bag.png"
+                                                                                                   alt=""/>
                     </li>
                 </a>
                 <div class="clearfix"></div>
@@ -106,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="active"><a href="{{ route('index') }}" data-hover="Home">Trang chủ</a></li>
                 <li><a href="{{ route('danhsachsanpham') }}" data-hover="About Us">Danh sách sản phẩm</a></li>
                 <li><a href="{{ route('danhsachkhuyenmai') }}" data-hover="Careers">Danh sách khuyến mãi</a></li>
-                <li><a href="contact.html" data-hover="Contact Us">Tin tức</a></li>
+                <li><a href="{{ route('danhsachtintuc') }}" data-hover="Contact Us">Tin tức</a></li>
                 {{--<li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>--}}
                 {{--<li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>--}}
                 {{--<li><a href="wishlist.html" data-hover="Wish List">Wish List</a></li>--}}
@@ -160,88 +161,88 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main">
     <div class="content_top">
         <div class="container">
-            @if($currentRoute != 'gio-hang' && $currentRoute != 'gio-hang/thanh-toan' && $currentRoute != 'login' && $currentRoute != 'register')
+            @if($currentRoute != 'cart' && $currentRoute != 'checkout' && $currentRoute != 'loginUserView' && $currentRoute != 'registerView' && $currentRoute != 'danhsachtintuc' && $currentRoute != 'chitiettintuc')
                 <div class="col-md-3 sidebar_box">
-                <div class="sidebar">
-                    <div class="menu_box">
-                        <h3 class="menu_head">Products Menu</h3>
-                        <ul class="menu">
-                            @foreach($danhmuc as $key => $dm)
-                                <li class="item{{ $key + 1 }}">
-                                    <a href="#">
-                                        <img class="arrow-img" src="/images/f_menu.png" alt=""/>{{ $dm->cat_name }}
-                                    </a>
-                                    @if(count($dm->children) > 0)
-                                        <ul class="cute">
-                                            @foreach($dm->children as $childKey => $child)
-                                                <li class="subitem{{ $childKey +1 }}">
-                                                    <a href="{{ route('productCategory', ['id' => $child->id]) }}">{{ $child->cat_name }} </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <!--initiate accordion-->
-                    <script type="text/javascript">
-                        $(function () {
-                            var menu_ul = $('.menu > li > ul'),
-                                menu_a = $('.menu > li > a');
-                            menu_ul.hide();
-                            menu_a.click(function (e) {
-                                e.preventDefault();
-                                if (!$(this).hasClass('active')) {
-                                    menu_a.removeClass('active');
-                                    menu_ul.filter(':visible').slideUp('normal');
-                                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                                } else {
-                                    $(this).removeClass('active');
-                                    $(this).next().stop(true, true).slideUp('normal');
-                                }
-                            });
+                    <div class="sidebar">
+                        <div class="menu_box">
+                            <h3 class="menu_head">Products Menu</h3>
+                            <ul class="menu">
+                                @foreach($danhmuc as $key => $dm)
+                                    <li class="item{{ $key + 1 }}">
+                                        <a href="#">
+                                            <img class="arrow-img" src="/images/f_menu.png" alt=""/>{{ $dm->cat_name }}
+                                        </a>
+                                        @if(count($dm->children) > 0)
+                                            <ul class="cute">
+                                                @foreach($dm->children as $childKey => $child)
+                                                    <li class="subitem{{ $childKey +1 }}">
+                                                        <a href="{{ route('productCategory', ['id' => $child->id]) }}">{{ $child->cat_name }} </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!--initiate accordion-->
+                        <script type="text/javascript">
+                            $(function () {
+                                var menu_ul = $('.menu > li > ul'),
+                                    menu_a = $('.menu > li > a');
+                                menu_ul.hide();
+                                menu_a.click(function (e) {
+                                    e.preventDefault();
+                                    if (!$(this).hasClass('active')) {
+                                        menu_a.removeClass('active');
+                                        menu_ul.filter(':visible').slideUp('normal');
+                                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                                    } else {
+                                        $(this).removeClass('active');
+                                        $(this).next().stop(true, true).slideUp('normal');
+                                    }
+                                });
 
-                        });
-                    </script>
+                            });
+                        </script>
+                    </div>
+                    {{--<div class="delivery">--}}
+                    {{--<img src="/images/delivery.jpg" class="img-responsive" alt=""/>--}}
+                    {{--<h3>Delivering</h3>--}}
+                    {{--<h4>World Wide</h4>--}}
+                    {{--</div>--}}
+                    {{--<div class="twitter">--}}
+                    {{--<h3>Latest From Twitter</h3>--}}
+                    {{--<ul class="twt1">--}}
+                    {{--<i class="twt"> </i>--}}
+                    {{--<li class="twt1_desc"><span class="m_1">@Contrary</span> to popular belief, Lorem Ipsum is<span--}}
+                    {{--class="m_1"> not simply</span></li>--}}
+                    {{--<div class="clearfix"></div>--}}
+                    {{--</ul>--}}
+                    {{--<ul class="twt1">--}}
+                    {{--<i class="twt"> </i>--}}
+                    {{--<li class="twt1_desc"><span class="m_1">There are many</span> variations of passages of Lorem--}}
+                    {{--Ipsum available, but the majority <span class="m_1">have suffered</span></li>--}}
+                    {{--<div class="clearfix"></div>--}}
+                    {{--</ul>--}}
+                    {{--<ul class="twt1">--}}
+                    {{--<i class="twt"> </i>--}}
+                    {{--<li class="twt1_desc"><span class="m_1">Lorem Ipsum</span> is simply dummy text of the printing--}}
+                    {{--and typesetting industry. Lorem Ipsum has <span class="m_1">been the industry's standard dummy text ever</span>--}}
+                    {{--</li>--}}
+                    {{--<div class="clearfix"></div>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--<div class="clients">--}}
+                    {{--<h3>Our Happy Clients</h3>--}}
+                    {{--<h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque--}}
+                    {{--laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto--}}
+                    {{--beatae.</h4>--}}
+                    {{--<ul class="user">--}}
+                    {{--<i class="user_icon"></i>--}}
+                    {{--<li class="user_desc"><a href="#"><p>John Doe, Company Info</p></a></li>--}}
+                    {{--<div class="clearfix"></div>--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
                 </div>
-                {{--<div class="delivery">--}}
-                {{--<img src="/images/delivery.jpg" class="img-responsive" alt=""/>--}}
-                {{--<h3>Delivering</h3>--}}
-                {{--<h4>World Wide</h4>--}}
-                {{--</div>--}}
-                {{--<div class="twitter">--}}
-                {{--<h3>Latest From Twitter</h3>--}}
-                {{--<ul class="twt1">--}}
-                {{--<i class="twt"> </i>--}}
-                {{--<li class="twt1_desc"><span class="m_1">@Contrary</span> to popular belief, Lorem Ipsum is<span--}}
-                {{--class="m_1"> not simply</span></li>--}}
-                {{--<div class="clearfix"></div>--}}
-                {{--</ul>--}}
-                {{--<ul class="twt1">--}}
-                {{--<i class="twt"> </i>--}}
-                {{--<li class="twt1_desc"><span class="m_1">There are many</span> variations of passages of Lorem--}}
-                {{--Ipsum available, but the majority <span class="m_1">have suffered</span></li>--}}
-                {{--<div class="clearfix"></div>--}}
-                {{--</ul>--}}
-                {{--<ul class="twt1">--}}
-                {{--<i class="twt"> </i>--}}
-                {{--<li class="twt1_desc"><span class="m_1">Lorem Ipsum</span> is simply dummy text of the printing--}}
-                {{--and typesetting industry. Lorem Ipsum has <span class="m_1">been the industry's standard dummy text ever</span>--}}
-                {{--</li>--}}
-                {{--<div class="clearfix"></div>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-                {{--<div class="clients">--}}
-                {{--<h3>Our Happy Clients</h3>--}}
-                {{--<h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque--}}
-                {{--laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto--}}
-                {{--beatae.</h4>--}}
-                {{--<ul class="user">--}}
-                {{--<i class="user_icon"></i>--}}
-                {{--<li class="user_desc"><a href="#"><p>John Doe, Company Info</p></a></li>--}}
-                {{--<div class="clearfix"></div>--}}
-                {{--</ul>--}}
-                {{--</div>--}}
-            </div>
-            @endif
+@endif

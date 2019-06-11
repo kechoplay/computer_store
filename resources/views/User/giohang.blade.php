@@ -168,7 +168,7 @@ $totalPrice = 0;
                                 </form>
                             </div>
                         @else
-                            <p>Bạn hãy đăng nhập để mua hàng</p>
+                            <p><a href="{{ route('loginUserView') }}"><button class="btn btn-primary">Đăng nhập</button></a></p>
                         @endif
                     @else
                         <div>

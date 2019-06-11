@@ -21,4 +21,11 @@ class ChiTietHoaDon extends Model
     {
         return $this->belongsTo('App\SanPham','product_id', 'id');
     }
+
+    public function giathanhtoan() {
+        return $this->price * (1 - $this->sale / 100);
+    }
+    public function tongtien(){
+        return $this->giathanhtoan() * $this->quantity;
+    }
 }

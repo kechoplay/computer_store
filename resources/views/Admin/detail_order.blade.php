@@ -169,32 +169,16 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{$hoadon->HinhThuc}} </b>
+                                            <b>{{$hoadon->payment_method == 1 ? 'Thanh toán trực tiếp' : 'Chuyển khoản'}} </b>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="MaNV">Nhân viên
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{isset($hoadon->nhanvien) ? $hoadon->nhanvien->TenNV : ' '}} </b>
-                                        </div>
-                                    </div>
-                                <!-- <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-3" for="MaKH">Khách hàng
-                    <span class="required">*</span>
-                  </label>
-                  <div class="col-md-9 col-sm-9 col-xs-9">
-                    <b>{{isset($hoadon->khachhang) ? $hoadon->khachhang->TenKH : ' '}} </b>
-                  </div>
-                </div> -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TenKH">Tên Khách
                                             hàng
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{$hoadon->TenKH}} </b>
+                                            <b>{{$hoadon->customer_name}} </b>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -202,7 +186,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{$hoadon->SDT}} </b>
+                                            <b>{{$hoadon->phone}} </b>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -210,7 +194,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{$hoadon->DiaChi}} </b>
+                                            <b>{{$hoadon->address}} </b>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -218,7 +202,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9 col-sm-9 col-xs-9">
-                                            <b>{{$hoadon->GhiChu}} </b>
+                                            <b>{{$hoadon->note}} </b>
                                         </div>
                                     </div>
                                     <div class="form-group">

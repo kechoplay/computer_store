@@ -118,6 +118,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('/order/cancel-ship/{id}', ['as' => 'cancelShipOrder', 'uses' => 'HoaDonController@cancelShip']);
 // phiếu bảo hành
     Route::get('/warranty', ['as' => 'listWarrantyView', 'uses' => 'PhieuBaoHanhController@index']);
+// thống kê
+    Route::get('/statistic', ['as' => 'statistic', 'uses' => 'AdminController@statistic']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
@@ -140,6 +142,8 @@ Route::get('/san-pham/tim-kiem', ['as' => 'searchProduct', 'uses' => 'SanPhamCon
 Route::get('/san-pham/danh-muc/{id}', ['as' => 'productCategory', 'uses' => 'SanPhamController@productCategory']);
 
 Route::get('/tin-tuc', ['as' => 'danhsachtintuc', 'uses' => 'TinTucController@listNew']);
+
+Route::get('/tin-tuc/{id}', ['as' => 'chitiettintuc', 'uses' => 'TinTucController@detailNew']);
 
 Route::get('/gio-hang/add-cart/{id}', ['as' => 'addCart', 'uses' => 'ShoppingCartController@addCart']);
 

@@ -93,7 +93,14 @@ class TinTucController extends Controller
 
     public function listNew()
     {
-        $tintuc = TinTuc::all()->orderBy('');
-        return view('Admin.list_tin_tuc', compact('tintuc'));
+        $tintucs = TinTuc::orderBy('date', 'DESC')->get();
+        return view('User.tintuc', compact('tintucs'));
+    }
+
+    public function detailNew($id)
+    {
+        $tintuc = TinTuc::find($id);
+
+        return view('User.detailtintuc', compact('tintuc'));
     }
 }
