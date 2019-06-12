@@ -164,7 +164,7 @@ class AdminController extends Controller
                 }
                 $danhsachdoanhthu[] = $doanhthu;
             }
-            $NgayDau = $NgayCuoi->copy()->addDay();
+            $NgayDau = $NgayCuoi->copy()->addDay()->startOfDay();
             if ($request->kieu == 'tuan') {
                 $NgayCuoi = $NgayDau->copy()->endOfWeek();
             } else if ($request->kieu == 'thang') {
@@ -179,5 +179,40 @@ class AdminController extends Controller
         $danhsachhoadon = HoaDon::where('status', 3)->where('time_buy', '>=', $TuNgay)->where('time_buy', '<=', $DenNgay)->get();
 
         return view('Admin.statistic', compact('danhsachngay', 'danhsachdoanhthu', 'danhsachhoadon', 'TuNgay', 'DenNgay', 'kieu'));
+    }
+
+    public function statisticProduct(Request $request)
+    {
+        $TuNgay = Carbon::now()->startOfMonth();
+        if ($request->TuNgay) $TuNgay = $request->TuNgay;
+        $DenNgay = Carbon::now()->endOfMonth();
+        if ($request->DenNgay) $DenNgay = $request->DenNgay;
+
+        $danhsachhoadon = HoaDon::where('status', 3)->where('time_buy', '>=', $TuNgay)->where('time_buy', '<=', $DenNgay)->get();
+        $danhsachsanpham = [];
+        $luotmua = [];
+        $tongtien = [];
+        foreach ($danhsachhoadon as $hoadon) {
+            foreach ($hoadon->chitiethoadon as $chitiethoadon) {
+                $sanpham = $chitiethoadon->sanpham;
+                $MaSP = $sanpham->id;
+
+                if (!isset($luotmua[$MaSP]))
+                    $luotmua[$MaSP] = 0;
+                $luotmua[$MaSP] += $chitiethoadon->quantity;
+
+                if (!isset($tongtien[$MaSP]))
+                    $tongtien[$MaSP] = 0;
+                $tongtien[$MaSP] += $chitiethoadon->tongtien();
+
+                if (isset($danhsachsanpham[$MaSP])) {
+                    $danhsachsanpham[$MaSP]->LuotMua += $sanpham->LuotMua;
+                    $danhsachsanpham[$MaSP]->TongTien += $sanpham->TongTien;
+                } else {
+                    $danhsachsanpham[$MaSP] = $sanpham;
+                }
+            }
+        }
+        return view('Admin.statistic_product', compact('danhsachsanpham', 'luotmua', 'tongtien', 'TuNgay', 'DenNgay'));
     }
 }

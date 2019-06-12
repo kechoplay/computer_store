@@ -20,7 +20,7 @@
             <div class="x_content">
                 <form action="">
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class='input-group date' id='TuNgay'>
                                 <input type='text' name="TuNgay" class="form-control" placeholder="Từ Ngày"/>
                                 <span class="input-group-addon">
@@ -28,7 +28,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class='input-group date' id='DenNgay'>
                                 <input type='text' name="DenNgay" class="form-control" placeholder="Đến Ngày"/>
                                 <span class="input-group-addon">
@@ -36,45 +36,31 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-xs-3">
-                            <label for="">Kiểu</label> <br>
-                            <input type="radio" name="kieu" id="kieuNgay" value="" {{$kieu=='ngay' ? 'checked': ''}}><label for="kieuNgay"> Ngày</label>
-                            <input type="radio" name="kieu" id="kieuTuan" value="tuan" {{$kieu=='tuan' ? 'checked': ''}}><label for="kieuTuan"> Tuần</label>
-                            <input type="radio" name="kieu" id="kieuThang" value="thang" {{$kieu=='thang' ? 'checked': ''}}><label for="kieuThang"> Tháng</label>
-                            <input type="radio" name="kieu" id="kieuNam" value="nam" {{$kieu=='nam' ? 'checked': ''}}><label for="kieuNam"> Năm</label>
-                        </div>
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <button type="submit" class="btn btn-primary">Lọc</button>
                         </div>
                     </div>
                 </form>
-                <canvas id="chartDoanhThu" width="400" height="100"></canvas>
-                {{--                <a href="{{route('baocao.xuatExcelDoanhThu', ['TuNgay' => $TuNgay, 'DenNgay' => $DenNgay])}}" class="btn btn-primary">Xuất excel</a>--}}
+
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                        cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>Mã hóa đơn</th>
-                        <th>Khách hàng</th>
-                        <th>Số điện thoại</th>
-                        <th>Thời gian</th>
-                        <th>Tổng tiền</th>
-                        <th> Xem chi tiết</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Số lượt mua</th>
+                        <th>Tổng doanh thu</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($danhsachhoadon as $hoadon)
+                    @foreach($danhsachsanpham as $sanpham)
                         <tr>
-                            <td>{{$hoadon->id}}</td>
-                            <td>{{$hoadon->customer_name}}</td>
-                            <td>{{$hoadon->phone}}</td>
-                            <td>{{$hoadon->time_buy}}</td>
-                            <td>{{number_format($hoadon->tongtien())}}</td>
-                            <td>
-                                <a href="{{route('orderDetailView',['id' => $hoadon->id])}}">
-                                    <button type="button" class="btn btn-info">Xem chi tiết</button>
-                                </a>
-                            </td>
+                            <td>{{$sanpham->id}}</td>
+                            <td>{{$sanpham->product_name}}</td>
+                            <td>{{$sanpham->danhmuc->cat_name}}</td>
+                            <td>{{$luotmua[$sanpham->id]}}</td>
+                            <td>{{number_format($tongtien[$sanpham->id])}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -109,54 +95,6 @@
         $('#DenNgay').datetimepicker({
             format: 'YYYY-MM-DD',
             defaultDate: "{{$DenNgay}}"
-        });
-
-        var ctx = document.getElementById("chartDoanhThu").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [
-                    @foreach($danhsachngay as $ngay)
-                        "{{$ngay}}",
-                    @endforeach
-                ],
-                datasets: [{
-                    label: 'Doanh thu',
-                    data: [
-                        @foreach($danhsachdoanhthu as $doanhthu)
-                        {{$doanhthu}},
-                        @endforeach
-                    ],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function (value, index, values) {
-                                return value.toLocaleString();
-                            }
-                        }
-                    }]
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                            if (label) {
-                                label += ': ';
-                            }
-                            label += tooltipItem.yLabel.toLocaleString();
-                            return label;
-                        }
-                    }
-                }
-            }
         });
     </script>
 @endpush()

@@ -120,6 +120,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('/warranty', ['as' => 'listWarrantyView', 'uses' => 'PhieuBaoHanhController@index']);
 // thống kê
     Route::get('/statistic', ['as' => 'statistic', 'uses' => 'AdminController@statistic']);
+
+    Route::get('/statistic/product', ['as' => 'statisticProduct', 'uses' => 'AdminController@statisticProduct']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);

@@ -70,18 +70,18 @@ class DanhMucController extends Controller
         $status = $request->status;
 
         $childCategory = DanhMuc::all()->where('parent_id', $parentId)->where('id', '!=', $id)->toArray();
-        $isDubplicateOrder = false;
+        $isDuplicateOrder = false;
 
         if (count($childCategory) > 0) {
             foreach ($childCategory as $category) {
                 if ($sortOrder == $category['sort_order']) {
-                    $isDubplicateOrder = true;
+                    $isDuplicateOrder = true;
                     break;
                 }
             }
         }
 
-        if ($isDubplicateOrder) {
+        if ($isDuplicateOrder) {
             return redirect()->back()->withErrors(['error' => 'Vị trí hiển thị danh mục trùng. Xin mời chọn vị trí khác']);
         }
 

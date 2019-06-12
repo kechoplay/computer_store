@@ -102,7 +102,7 @@
                             <li><a><i class="fa fa-table"></i> Thống kê báo cáo <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ route('statistic') }}">Thống kê doanh thu</a></li>
-                                    <li><a href="tables_dynamic.html">Thống kê sản phẩm</a></li>
+                                    <li><a href="{{ route('statisticProduct') }}">Thống kê sản phẩm</a></li>
                                 </ul>
                             </li>
                         </ul>
