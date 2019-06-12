@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\ChiTietHoaDon;
 use App\DanhMuc;
 use App\HoaDon;
 use Carbon\Carbon;
@@ -192,26 +193,20 @@ class AdminController extends Controller
         $danhsachsanpham = [];
         $luotmua = [];
         $tongtien = [];
+        $idHoaDon = [];
         foreach ($danhsachhoadon as $hoadon) {
-            foreach ($hoadon->chitiethoadon as $chitiethoadon) {
-                $sanpham = $chitiethoadon->sanpham;
-                $MaSP = $sanpham->id;
+            $idHoaDon[] = $hoadon->id;
+        }
 
-                if (!isset($luotmua[$MaSP]))
-                    $luotmua[$MaSP] = 0;
-                $luotmua[$MaSP] += $chitiethoadon->quantity;
+        $listProductWithTotal = ChiTietHoaDon::selectRaw("SUM(quantity) as luotmua, SUM(price*quantity) as doanhthu, product_id")->whereIn('order_id', $idHoaDon)->groupBy('product_id')->get();
 
-                if (!isset($tongtien[$MaSP]))
-                    $tongtien[$MaSP] = 0;
-                $tongtien[$MaSP] += $chitiethoadon->tongtien();
+        foreach ($listProductWithTotal as $chitiethoadon) {
+            $sanpham = $chitiethoadon->sanpham;
+            $MaSP = $sanpham->id;
 
-                if (isset($danhsachsanpham[$MaSP])) {
-                    $danhsachsanpham[$MaSP]->LuotMua += $sanpham->LuotMua;
-                    $danhsachsanpham[$MaSP]->TongTien += $sanpham->TongTien;
-                } else {
-                    $danhsachsanpham[$MaSP] = $sanpham;
-                }
-            }
+            $luotmua[$MaSP] = $chitiethoadon->luotmua;
+            $tongtien[$MaSP] = $chitiethoadon->doanhthu;
+            $danhsachsanpham[] = $sanpham;
         }
         return view('Admin.statistic_product', compact('danhsachsanpham', 'luotmua', 'tongtien', 'TuNgay', 'DenNgay'));
     }
