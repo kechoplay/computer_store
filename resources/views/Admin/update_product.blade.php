@@ -97,6 +97,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaNCC">Tên nhà cung cấp
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="MaNCC" class="form-control">
+                                        @foreach($nhacungcap as $ncc)
+                                            <option value="{{ $ncc->id }}" {{ $sanpham->sup_id == $ncc->id ? "selected" : '' }}> {{ $ncc->supply_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NgaySX">Ngày sản xuất
                                     <span class="required">*</span>
                                 </label>
@@ -170,10 +182,12 @@
                                 </label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="SPNew" value="0" {{ $sanpham->status == 0 ? "checked" : '' }}> Cũ
+                                        <input type="radio" name="SPNew"
+                                               value="0" {{ $sanpham->status == 0 ? "checked" : '' }}> Cũ
                                     </label>
                                     <label>
-                                        <input type="radio" name="SPNew" value="1" {{ $sanpham->status == 1 ? "checked" : '' }}> Mới
+                                        <input type="radio" name="SPNew"
+                                               value="1" {{ $sanpham->status == 1 ? "checked" : '' }}> Mới
                                     </label>
                                 </div>
                             </div>

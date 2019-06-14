@@ -75,6 +75,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('listSupplierView') }}">
+                                    <i class="fa fa-desktop"></i>Quản lý nhà cung cấp
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('productList') }}">
                                     <i class="fa fa-table"></i> Quản lý sản phẩm
                                 </a>

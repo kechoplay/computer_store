@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DanhMuc;
 use App\KhuyenMai;
+use App\NhaCungCap;
 use App\SanPham;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class SanPhamController extends Controller
     public function createProduct()
     {
         $danhmuc = DanhMuc::where('parent_id', 0)->get();
-        return view('Admin.create_new_product', compact('danhmuc'));
+        $nhacungcap = NhaCungCap::all();
+        return view('Admin.create_new_product', compact('danhmuc', 'nhacungcap'));
     }
 
     public function storeNewProduct(Request $sp)
@@ -45,6 +47,7 @@ class SanPhamController extends Controller
         $data = [
             'product_name' => $sp->TenSP,
             'cat_id' => $sp->MaDM,
+            'sup_id' => $sp->MaNCC,
             'price' => $sp->Gia,
             'image' => $path . $filename,
             'note' => $sp->GhiChu,
@@ -69,7 +72,8 @@ class SanPhamController extends Controller
         $sanpham = SanPham::find($id);
         $sanpham->start_date = Carbon::createFromTimestamp(strtotime($sanpham->start_date))->format('Y-m-d');
         $danhmuc = DanhMuc::where('parent_id', 0)->get();
-        return view('Admin.update_product', compact('sanpham', 'danhmuc'));
+        $nhacungcap = NhaCungCap::all();
+        return view('Admin.update_product', compact('sanpham', 'danhmuc', 'nhacungcap'));
     }
 
     // cập nhật sản phẩm
@@ -78,6 +82,7 @@ class SanPhamController extends Controller
         $sanpham = SanPham::find($id);
         $sanpham->product_name = $sp->TenSP;
         $sanpham->cat_id = $sp->MaDM;
+        $sanpham->sup_id = $sp->MaNCC;
         $sanpham->price = $sp->Gia;
         $sanpham->note = $sp->GhiChu;
         $sanpham->description = $sp->MoTa;

@@ -122,6 +122,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::get('/statistic', ['as' => 'statistic', 'uses' => 'AdminController@statistic']);
 
     Route::get('/statistic/product', ['as' => 'statisticProduct', 'uses' => 'AdminController@statisticProduct']);
+//  nhà cung cấp
+    Route::get('/list-supplier', ['as' => 'listSupplierView', 'uses' => 'NhaCungCapController@index']);
+
+    Route::get('/add-new-supplier', ['as' => 'addNewSupplierView', 'uses' => 'NhaCungCapController@create']);
+
+    Route::post('/store-new-supplier', ['as' => 'storeNewSupplier', 'uses' => 'NhaCungCapController@store']);
+
+    Route::get('/update-supplier/{id}', ['as' => 'updateSupplierView', 'uses' => 'NhaCungCapController@update']);
+
+    Route::post('/edit-supplier', ['as' => 'editSupplier', 'uses' => 'NhaCungCapController@edit']);
+
+    Route::get('/delete-supplier/{id}', ['as' => 'deleteSupplier', 'uses' => 'NhaCungCapController@delete']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);

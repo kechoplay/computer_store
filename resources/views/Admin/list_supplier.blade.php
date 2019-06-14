@@ -4,7 +4,7 @@
     <!-- Datatables -->
     <link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 @endpush()
@@ -13,7 +13,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Quản lý sản phẩm</h3>
+                <h3>Quản lý nhà cung cấp</h3>
             </div>
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -31,41 +31,40 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Danh sách sản phẩm </h2>
+                        <h2>Danh sách nhà cung cấp</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
                         <div class="clearfix"></div>
-                        <a href="{{route('createProductView')}}">
-                            <button type="button" class="btn btn-info">Tạo mới</button>
-                        </a>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive"
-                               cellspacing="0" width="100%">
+                        <div style="text-align: center; margin-bottom: 10px;color: red; font-size: 15px;">
+                            <span>{{ $errors->first('error') ? $errors->first('error') : '' }}</span>
+                        </div>
+                        <a href="{{ route('addNewSupplierView') }}"><button type="button" class="btn btn-primary">Thêm nhà cung cấp</button></a>
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>Ảnh</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Tên danh mục</th>
                                 <th>Tên nhà cung cấp</th>
-                                <th style="width: 8%">Số lượng</th>
-                                <th>Giá</th>
-                                <th style="width: 8%;">Tùy chọn</th>
+                                <th>Địa chỉ</th>
+                                <th>Mail</th>
+                                <th>Số điện thoại</th>
+                                <th>Ghi chú</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sanpham as $sp)
+                            @foreach($nhacungcap as $cc)
                                 <tr>
+                                    <td>{{ $cc->supply_name }}</td>
+                                    <td>{{ $cc->supply_address }}</td>
+                                    <td>{{ $cc->supply_mail }}</td>
+                                    <td>{{ $cc->supply_phone }}</td>
+                                    <td>{{ $cc->note }}</td>
                                     <td>
-                                        <img src="{{ $sp->image }}" width="100px">
-                                    </td>
-                                    <td style="max-width:100px;">{{ $sp->product_name }}</td>
-                                    <td>{{ $sp->danhmuc->cat_name }} </td>
-                                    <td>{{ $sp->nhacungcap->supply_name }} </td>
-                                    <td>{{ $sp->quantity }}</td>
-                                    <td>{{ number_format($sp->price) }}</td>
-                                    <td>
-                                        <a href="{{ route('editProductView', ['id' => $sp->id]) }}">
-                                            <button class="btn btn-primary">Sửa</button>
-                                        </a>
+                                        <a href="{{ route('deleteSupplier', ['id' => $cc->id]) }}" onclick="return confirm('Bạn có chắc muốn xóa không?')"><button type="button" class="btn btn-danger">Xóa</button></a>
+                                        <br>
+                                        <a href="{{ route('updateSupplierView', ['id' => $cc->id]) }}" ><button type="button" class="btn btn-primary">Cập nhật</button></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -76,7 +75,7 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection()
 
 @push('js')
     <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>

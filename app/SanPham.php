@@ -26,4 +26,9 @@ class SanPham extends Model
     {
         return $this->hasMany('App\ChiTietHoaDon', 'product_id', 'id');
     }
+
+    public function nhacungcap()
+    {
+        return $this->belongsTo('App\NhaCungCap', 'sup_id', 'id');
+    }
 }

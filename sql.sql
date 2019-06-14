@@ -174,3 +174,16 @@ CREATE TABLE `phanhoi` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `nhacungcap` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supply_name` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supply_address` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supply_mail` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supply_phone` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `note` text COLLATE utf8_unicode_ci,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
