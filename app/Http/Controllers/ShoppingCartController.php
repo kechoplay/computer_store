@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ChiTietHoaDon;
+use App\HinhThucThanhToan;
 use App\HoaDon;
 use App\SanPham;
 use Illuminate\Http\Request;
@@ -68,7 +69,9 @@ class ShoppingCartController extends Controller
             }
         }
 
-        return view('User.giohang', compact('listProduct'));
+        $paymentMethod = HinhThucThanhToan::get();
+
+        return view('User.giohang', compact('listProduct', 'paymentMethod'));
     }
 
     public function updateCart(Request $request)

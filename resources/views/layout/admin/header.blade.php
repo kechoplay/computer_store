@@ -100,6 +100,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('listPaymentView') }}">
+                                    <i class="fa fa-bar-chart-o"></i>Quản lý hình thức thanh toán
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('listWarrantyView') }}">
                                     <i class="fa fa-bar-chart-o"></i>Quản lý phiếu bảo hành
                                 </a>

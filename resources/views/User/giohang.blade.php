@@ -149,26 +149,22 @@ $totalPrice = 0;
                                         </div>
                                     </div>
                                     <div class="row choosepayment">
-                                        <a href="" class="payoffline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="1"
-                                                    class="btn btn-primary">
-                                                thanh toán khi nhận hàng
-                                                <br>
-                                                <span>Xem hàng trước</span>
-                                            </button>
-                                        </a>
-                                        <a href="" class="payonline col-md-6">
-                                            <button type="submit" name="HinhThuc" value="2"
-                                                    class="btn btn-primary">thanh toán online
-                                                <br>
-                                                <span>Dùng thẻ ATM (có internet Banking)</span>
-                                            </button>
-                                        </a>
+                                        @foreach($paymentMethod as $tt)
+                                            <a href="" class="payoffline col-md-6">
+                                                <button type="submit" name="HinhThuc" value="{{ $tt->id }}"
+                                                        class="btn btn-primary">
+                                                    {{ $tt->payment_name }}
+                                                    <br>
+                                                </button>
+                                            </a>
+                                        @endforeach
                                     </div>
                                 </form>
                             </div>
                         @else
-                            <p><a href="{{ route('loginUserView') }}"><button class="btn btn-primary">Đăng nhập</button></a></p>
+                            <p><a href="{{ route('loginUserView') }}">
+                                    <button class="btn btn-primary">Đăng nhập</button>
+                                </a></p>
                         @endif
                     @else
                         <div>

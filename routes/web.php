@@ -134,6 +134,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/edit-supplier', ['as' => 'editSupplier', 'uses' => 'NhaCungCapController@edit']);
 
     Route::get('/delete-supplier/{id}', ['as' => 'deleteSupplier', 'uses' => 'NhaCungCapController@delete']);
+//  nhà cung cấp
+    Route::get('/list-payment', ['as' => 'listPaymentView', 'uses' => 'HinhThucThanhToanController@index']);
+
+    Route::get('/add-new-payment', ['as' => 'addNewPaymentView', 'uses' => 'HinhThucThanhToanController@create']);
+
+    Route::post('/store-new-payment', ['as' => 'storeNewPayment', 'uses' => 'HinhThucThanhToanController@store']);
+
+    Route::get('/update-payment/{id}', ['as' => 'updatePaymentView', 'uses' => 'HinhThucThanhToanController@update']);
+
+    Route::post('/edit-payment', ['as' => 'editPayment', 'uses' => 'HinhThucThanhToanController@edit']);
+
+    Route::get('/delete-payment/{id}', ['as' => 'deletePayment', 'uses' => 'HinhThucThanhToanController@delete']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);
