@@ -108,7 +108,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><a href="{{ route('danhsachsanpham') }}" data-hover="About Us">Danh sách sản phẩm</a></li>
                 <li><a href="{{ route('danhsachkhuyenmai') }}" data-hover="Careers">Danh sách khuyến mãi</a></li>
                 <li><a href="{{ route('danhsachtintuc') }}" data-hover="Contact Us">Tin tức</a></li>
-                {{--<li><a href="404.html" data-hover="Company Profile">Company Profile</a></li>--}}
+                @if(\Illuminate\Support\Facades\Auth::guard('users')->check())
+                    <li><a href="{{ route('customerOrder') }}" data-hover="My Order">Đơn hàng của tôi</a></li>
+                @endif
                 {{--<li><a href="register.html" data-hover="Company Registration">Company Registration</a></li>--}}
                 {{--<li><a href="wishlist.html" data-hover="Wish List">Wish List</a></li>--}}
             </ul>
@@ -161,7 +163,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="main">
     <div class="content_top">
         <div class="container">
-            @if($currentRoute != 'cart' && $currentRoute != 'checkout' && $currentRoute != 'loginUserView' && $currentRoute != 'registerView' && $currentRoute != 'danhsachtintuc' && $currentRoute != 'chitiettintuc')
+            @if($currentRoute != 'cart' && $currentRoute != 'checkout' && $currentRoute != 'loginUserView'
+            && $currentRoute != 'registerView' && $currentRoute != 'danhsachtintuc' && $currentRoute != 'chitiettintuc'
+            && $currentRoute != 'customerOrder'
+            )
                 <div class="col-md-3 sidebar_box">
                     <div class="sidebar">
                         <div class="menu_box">

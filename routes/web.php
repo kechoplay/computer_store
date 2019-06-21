@@ -189,4 +189,6 @@ Route::post('/register', ['as' => 'postRegister', 'uses' => 'UserController@regi
 
 Route::get('/gio-hang/thanh-toan', ['as' => 'checkout', 'uses' => 'ShoppingCartController@checkout'])->middleware('check_login_user');
 
+Route::get('/customer/order/', ['as' => 'customerOrder', 'uses' => 'UserController@customerOrder'])->middleware('check_login_user');
+
 Route::get('/logout', ['as' => 'logoutUser', 'uses' => 'UserController@logout']);

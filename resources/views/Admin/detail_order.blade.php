@@ -62,7 +62,7 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <b>{{$hoadon->payment_method == 1 ? 'Thanh toán trực tiếp' : 'Chuyển khoản'}} </b>
+                                    <b>{{ isset($hoadon->hinhthucthanhtoan->payment_name) ? $hoadon->hinhthucthanhtoan->payment_name : ''}} </b>
                                 </div>
                             </div>
                             <div class="form-horizontal">

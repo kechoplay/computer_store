@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HoaDon;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -114,5 +115,11 @@ class UserController extends Controller
         Session::flush();
         Auth::guard('users')->logout();
         return redirect()->back();
+    }
+
+    public function customerOrder()
+    {
+        $listOrder = HoaDon::where('user_id', Auth::guard('users')->user()->id)->orderBy('id', 'DESC')->get();
+        return view('User.customer_order', compact('listOrder'));
     }
 }

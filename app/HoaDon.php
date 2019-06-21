@@ -24,4 +24,9 @@ class HoaDon extends Model
         }
         return $tongtien;
     }
+
+    public function hinhthucthanhtoan()
+    {
+        return $this->belongsTo('App\HinhThucThanhToan', 'payment_method', 'id');
+    }
 }

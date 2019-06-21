@@ -36,10 +36,12 @@ $now = time();
                                 <span>Số lượng:</span>
                                 <input type="number" id="quantity" name="quantity" min="0"
                                        max="{{ $sanpham->quantity }}" value="{{ $sanpham->quantity }}">
+                                <p style="float: right; margin: 5px 20px; font-size: 13px;">{{ $sanpham->quantity }} sản
+                                    phẩm có sẵn</p>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
-                        <button type="submit" class="btn bt1 btn-primary btn-normal btn-inline ">
+                        <button type="submit" class="btn bt1 btn-primary btn-normal btn-inline {{ $sanpham->quantity == 0 ? 'disabled' : '' }}">
                             Mua
                         </button>
                     </form>

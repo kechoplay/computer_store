@@ -26,10 +26,8 @@ $totalPrice = 0;
                             <li>Mã hóa đơn: <b>{{ $hoaDon->id }}</b></li>
                             <li>Địa chỉ nhận hàng: <b>{{ $hoaDon->address }}</b></li>
                             <li>Tổng tiền: <b>{{ number_format($totalMoney) }} VNĐ</b></li>
-                            @if ($hoaDon->payment_method == '1')
-                                <li>Thanh toán tiền mặt khi nhận hàng</li>
-                            @else
-                                <li>Thanh toán chuyển khoản qua ngân hàng</li>
+                            @if (isset($hoaDon->hinhthucthanhtoan->payment_name))
+                                <li>{{ $hoaDon->hinhthucthanhtoan->payment_name }}</li>
                             @endif
                         </ul>
                         <p>Trước khi giao hàng nhân viên sẽ gọi quý khách để xác nhận. Khi cần hỗ trợ vui lòng liên hệ
