@@ -167,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             && $currentRoute != 'registerView' && $currentRoute != 'danhsachtintuc' && $currentRoute != 'chitiettintuc'
             && $currentRoute != 'customerOrder'
             )
-                <div class="col-md-3 sidebar_box">
+                <div class="col-md-2 sidebar_box">
                     <div class="sidebar">
                         <div class="menu_box">
                             <h3 class="menu_head">Products Menu</h3>

@@ -1,13 +1,13 @@
-<div class="col-md-4 top_grid1-box1">
+<div class="col-md-3 top_grid1-box1">
     <div class="grid_1">
         <a href="{{ route('chitietsanpham', ['id' => $id]) }}">
             <div class="b-link-stroke b-animate-go  thickbox">
                 <img src="{{ $image }}" class="img-responsive" alt=""
-                     style="width: 100%; height: 300px">
+                     style="width: 100%; height: 200px">
             </div>
         </a>
         <div class="grid_2" style="height: 100px;">
-            <a href="{{ route('chitietsanpham', ['id' => $id]) }}"><p>{{ $product_name }}</p></a>
+            <a href="{{ route('chitietsanpham', ['id' => $id]) }}"><p style="height: 36px;">{{ $product_name }}</p></a>
             <ul class="grid_2-bottom">
                 <li class="grid_2-left">
                     @if($is_sale == 1)

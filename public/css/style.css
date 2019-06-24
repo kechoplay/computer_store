@@ -540,6 +540,10 @@ ul.callbacks_tabs.callbacks1_tabs {
     }
 }
 
+.container {
+    width: 70%;
+}
+
 .column_center {
     background: #dee9f1;
     background: -moz-linear-gradient(45deg, #dee9f1 50%, #f1ede9 57%, #f9eae4 100%);
@@ -607,6 +611,7 @@ h3.menu_head {
 .sidebar_box {
     padding-right: 0;
     border-right: 1px solid #B8B8B8;
+    padding-left: 0;
 }
 
 .menu {
@@ -909,13 +914,12 @@ ul.user li.user_desc p a {
 }
 
 .grid_2 p {
-    font: 600 15px/15px 'Lato', sans-serif;
+    font: 600 14px/15px 'Lato', sans-serif;
     color: #797979;
     line-height: 1.2em;
     border-bottom: 1px solid #ECECEC;
     padding-bottom: 10px;
     margin-bottom: 5px;
-    height: 46px;
 }
 
 a:hover, a:focus {
@@ -937,7 +941,7 @@ ul.grid_2-bottom li.grid_2-left {
 
 ul.grid_2-bottom li.grid_2-left p {
     border-bottom: 0;
-    font: 800 20px/20px 'Lato', sans-serif;
+    font: 600 17px/25px 'Lato', sans-serif;
     color: #000;
     margin: 3px 0 0 0;
     padding-bottom: 0;
@@ -1060,6 +1064,7 @@ ul.grid_2-bottom li.grid_2-left p small {
 
 .top_grid1-box1 {
     padding-right: 0;
+    padding-bottom: 15px;
 }
 
 .top_grid2-box2 {
@@ -1067,14 +1072,15 @@ ul.grid_2-bottom li.grid_2-left p small {
 }
 
 .top_grid2 {
-    margin-top: 2em;
+    margin-top: 1em;
+    margin-bottom: 0.7em;
 }
 
 h4.head {
     color: #000;
-    font: 700 25px/25px 'Lato', sans-serif;
+    font: 700 20px/25px 'Lato', sans-serif;
     text-transform: uppercase;
-    padding: 30px 0 0 20px;
+    padding: 0 0 0 20px;
 }
 
 span.m_2 {
@@ -2395,4 +2401,19 @@ p.cart {
     .page-not-found h1 {
         font: 300 90px/90px Lato, sans-serif;
     }
+}
+
+.load-more {
+    font-family: Roboto-Medium;
+    margin: 0 auto;
+    display: block;
+    width: 387px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #1a9cb8;
+    border: 1px solid #1a9cb8;
+    text-transform: uppercase;
+    cursor: pointer;
 }

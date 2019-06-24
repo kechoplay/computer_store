@@ -5,7 +5,7 @@ $now = time();
 
 @section('content')
 
-    <div class="col-md-9 content_right">
+    <div class="col-md-10 content_right">
         <h4 class="head"><span class="m_2">Danh sách sản phẩm</span></h4>
         <div class="top_grid2">
             @foreach($sanpham as $sp)
