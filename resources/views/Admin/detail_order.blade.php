@@ -161,8 +161,9 @@
                             </div>
                             <!-- Nội dung in -->
 
-                            <div id="print-area" class="hidden">
+                            <div id="print-area" class="">
                                 <div class="form-horizontal">
+                                    <div style="text-align: center; margin-bottom: 20px; font-weight: 500; font-size: 16px">Hóa đơn bán hàng</div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="HinhThuc">Hình thức
                                             thanh toán
@@ -258,6 +259,10 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <label class="col-md-6 col-sm-6 col-xs-6" style="text-align: left">Người lập hóa đơn</label>
+                                        <label class="col-md-6 col-sm-6 col-xs-6" style="text-align: right">Người mua</label>
                                     </div>
                                 </div>
                             </div>

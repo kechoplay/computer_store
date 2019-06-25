@@ -37,7 +37,6 @@ body a {
 
 .logo {
     float: left;
-    margin-top: 10px;
 }
 
 ul.shopping_grid {
@@ -541,7 +540,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 
 .container {
-    width: 70%;
+    width: 100%;
 }
 
 .column_center {

@@ -79,6 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="logo">
                 <a href="{{ route('index') }}"><img src="/images/logo.png" alt=""/></a>
+                <a href="{{ route('index') }}"><img src="/images/banner.png" alt="" style="height: 70px; margin-left: 100px"/></a>
             </div>
             <ul class="shopping_grid">
                 @if(!\Illuminate\Support\Facades\Auth::guard('users')->check())
@@ -91,8 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                 @endif
                 <a href="{{ route('cart') }}">
-                    <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;<img src="/images/bag.png"
-                                                                                                   alt=""/>
+                    <li><span class="m_1">Giỏ hàng</span>&nbsp;&nbsp;({{ $totalCart }}) &nbsp;
+                        <img src="/images/bag.png" alt=""/>
                     </li>
                 </a>
                 <div class="clearfix"></div>
