@@ -121,6 +121,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
 // thống kê
     Route::get('/statistic', ['as' => 'statistic', 'uses' => 'AdminController@statistic']);
 
+    Route::get('/statistic/export', ['as' => 'export', 'uses' => 'AdminController@export']);
+
     Route::get('/statistic/product', ['as' => 'statisticProduct', 'uses' => 'AdminController@statisticProduct']);
 //  nhà cung cấp
     Route::get('/list-supplier', ['as' => 'listSupplierView', 'uses' => 'NhaCungCapController@index']);

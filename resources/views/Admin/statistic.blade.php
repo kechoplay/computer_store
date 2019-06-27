@@ -38,10 +38,16 @@
                         </div>
                         <div class="col-xs-3">
                             <label for="">Kiểu</label> <br>
-                            <input type="radio" name="kieu" id="kieuNgay" value="" {{$kieu=='ngay' ? 'checked': ''}}><label for="kieuNgay"> Ngày</label>
-                            <input type="radio" name="kieu" id="kieuTuan" value="tuan" {{$kieu=='tuan' ? 'checked': ''}}><label for="kieuTuan"> Tuần</label>
-                            <input type="radio" name="kieu" id="kieuThang" value="thang" {{$kieu=='thang' ? 'checked': ''}}><label for="kieuThang"> Tháng</label>
-                            <input type="radio" name="kieu" id="kieuNam" value="nam" {{$kieu=='nam' ? 'checked': ''}}><label for="kieuNam"> Năm</label>
+                            <input type="radio" name="kieu" id="kieuNgay" value="" {{$kieu=='ngay' ? 'checked': ''}}>
+                            <label for="kieuNgay"> Ngày</label>
+                            <input type="radio" name="kieu" id="kieuTuan"
+                                   value="tuan" {{$kieu=='tuan' ? 'checked': ''}}>
+                            <label for="kieuTuan"> Tuần</label>
+                            <input type="radio" name="kieu" id="kieuThang"
+                                   value="thang" {{$kieu=='thang' ? 'checked': ''}}>
+                            <label for="kieuThang">Tháng</label>
+                            <input type="radio" name="kieu" id="kieuNam" value="nam" {{$kieu=='nam' ? 'checked': ''}}>
+                            <label for="kieuNam"> Năm</label>
                         </div>
                         <div class="col-xs-3">
                             <button type="submit" class="btn btn-primary">Lọc</button>
@@ -49,7 +55,8 @@
                     </div>
                 </form>
                 <canvas id="chartDoanhThu" width="400" height="100"></canvas>
-                {{--                <a href="{{route('baocao.xuatExcelDoanhThu', ['TuNgay' => $TuNgay, 'DenNgay' => $DenNgay])}}" class="btn btn-primary">Xuất excel</a>--}}
+                <a href="{{route('export', ['TuNgay' => $TuNgay, 'DenNgay' => $DenNgay])}}"
+                   class="btn btn-primary">Xuất excel</a>
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
                        cellspacing="0" width="100%">
                     <thead>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Admin;
 use App\ChiTietHoaDon;
 use App\DanhMuc;
+use App\Exports\doanhthuExport;
 use App\HoaDon;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -209,5 +211,10 @@ class AdminController extends Controller
             $danhsachsanpham[] = $sanpham;
         }
         return view('Admin.statistic_product', compact('danhsachsanpham', 'luotmua', 'tongtien', 'TuNgay', 'DenNgay'));
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new doanhthuExport($request->TuNgay, $request->DenNgay), 'doanhthu.xlsx');
     }
 }

@@ -119,32 +119,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div><!-- end h_menu4 -->
     </div>
 </div>
-{{--@if($currentRoute == '' || $currentRoute == '/')--}}
-{{--    <div class="slider">--}}
-{{--        <div class="callbacks_container" style="width: 56%">--}}
-{{--            <ul class="rslides" id="slider">--}}
-{{--                <li><img src="/images/b1.jpg" class="img-responsive" alt="" style="height: 400px"/>--}}
-{{--                    --}}{{--<div class="banner_desc">--}}
-{{--                    --}}{{--<h1>We Provide Worlds top fashion for less fashionpress.</h1>--}}
-{{--                    --}}{{--<h2>FashionPress the name of the of hi class fashion Web FreePsd.</h2>--}}
-{{--                    --}}{{--</div>--}}
-{{--                </li>--}}
-{{--                <li><img src="/images/b2.jpg" class="img-responsive" alt="" style="height: 400px"/>--}}
-{{--                    --}}{{--<div class="banner_desc">--}}
-{{--                    --}}{{--<h1>Duis autem vel eum iriure dolor in hendrerit.</h1>--}}
-{{--                    --}}{{--<h2>Claritas est etiam processus dynamicus, qui sequitur .</h2>--}}
-{{--                    --}}{{--</div>--}}
-{{--                </li>--}}
-{{--                <li><img src="/images/bn1.png" class="img-responsive" alt="" style="height: 400px"/>--}}
-{{--                    --}}{{--<div class="banner_desc">--}}
-{{--                    --}}{{--<h1>Ut wisi enim ad minim veniam, quis nostrud.</h1>--}}
-{{--                    --}}{{--<h2>Mirum est notare quam littera gothica, quam nunc putamus.</h2>--}}
-{{--                    --}}{{--</div>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--@endif--}}
+@if($currentRoute == 'index')
+    <div class="slider">
+        <div class="callbacks_container">
+            <ul class="rslides" id="slider">
+                <li><img src="/images/b1.jpg" class="img-responsive" alt="" style="height: 400px"/>
+                    <div class="banner_desc">
+                    </div>
+                </li>
+                <li><img src="/images/b2.jpg" class="img-responsive" alt="" style="height: 400px"/>
+                    <div class="banner_desc">
+                    </div>
+                </li>
+                <li><img src="/images/bn1.png" class="img-responsive" alt="" style="height: 400px"/>
+                    <div class="banner_desc">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+@endif
 <div class="column_center">
     <div class="container">
         <div class="search">
