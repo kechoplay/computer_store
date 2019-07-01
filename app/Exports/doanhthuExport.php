@@ -22,7 +22,8 @@ class doanhthuExport implements FromCollection, WithHeadings, ShouldAutoSize
     {
         return [
             'Mã HĐ',
-            'Ngày',
+            'Ngày lập hóa đơn',
+            'NV lập hóa đơn',
             'Địa chỉ',
             'Khách hàng',
             'Số điện thoại',
@@ -35,11 +36,12 @@ class doanhthuExport implements FromCollection, WithHeadings, ShouldAutoSize
         // ->where('ThoiGian', '>=', $this->TuNgay)->where('ThoiGian', '<=', $this->DenNgay)
         ->get()->map(function($item) {
             $result = [
-                'MaHD' => $item->id,
-                'ThoiGian' => $item->time_buy,
-                'DiaChi' => $item->address,
-                'TenKH' => $item->customer_name,
-                'SDT' => $item->phone,
+                'id' => $item->id,
+                'time_buy' => $item->time_buy,
+                'user_id' => $item->nhanvien->fullname,
+                'address' => $item->address,
+                'customer_name' => $item->customer_name,
+                'phone' => $item->phone,
                 'tongtien' => $item->tongtien()
             ];
             return $result;

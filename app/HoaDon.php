@@ -29,4 +29,9 @@ class HoaDon extends Model
     {
         return $this->belongsTo('App\HinhThucThanhToan', 'payment_method', 'id');
     }
+
+    public function nhanvien()
+    {
+        return $this->belongsTo('App\Admin', 'user_id', 'id');
+    }
 }
