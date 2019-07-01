@@ -70,14 +70,14 @@
                                 </li>
                             @endif
                             <li>
-                                <a href="{{ route('listCategoryView') }}">
-                                    <i class="fa fa-desktop"></i>Quản lý danh mục
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('listSupplierView') }}">
-                                    <i class="fa fa-desktop"></i>Quản lý nhà cung cấp
-                                </a>
+                                <a><i class="fa fa-table"></i> Quản lý danh mục <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('listCategoryView') }}">Danh mục sản phẩm</a></li>
+                                    <li><a href="{{ route('listSupplierView') }}">Quản lý nhà cung cấp</a></li>
+                                    <li><a href="{{ route('saleListView') }}">Quản lý khuyến mãi</a></li>
+                                    <li><a href="{{ route('listNewView') }}">Quản lý tin tức</a></li>
+                                    <li><a href="{{ route('listPaymentView') }}">Quản lý hình thức thanh toán</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="{{ route('productList') }}">
@@ -85,29 +85,11 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('saleListView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>Quản lý khuyến mãi
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('listNewView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>Quản lý tin tức
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('listOrderView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>Quản lý hóa đơn
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('listPaymentView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>Quản lý hình thức thanh toán
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('listWarrantyView') }}">
-                                    <i class="fa fa-bar-chart-o"></i>Quản lý phiếu bảo hành
-                                </a>
+                                <a><i class="fa fa-table"></i> Quản lý bán hàng <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('listOrderView') }}">Quản lý hóa đơn</a></li>
+                                    <li><a href="{{ route('listWarrantyView') }}">Quản lý phiếu bảo hành</a></li>
+                                </ul>
                             </li>
                             <li><a><i class="fa fa-table"></i> Thống kê báo cáo <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
