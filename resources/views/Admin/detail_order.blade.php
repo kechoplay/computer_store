@@ -161,7 +161,7 @@
                             </div>
                             <!-- Nội dung in -->
 
-                            <div id="print-area" class="">
+                            <div id="print-area" class="hidden">
                                 <div class="form-horizontal">
                                     <div style="text-align: center; margin-bottom: 20px; font-weight: 500; font-size: 16px">Hóa đơn bán hàng</div>
                                     <div class="form-group">
