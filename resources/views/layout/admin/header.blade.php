@@ -91,6 +91,11 @@
                                     <li><a href="{{ route('listWarrantyView') }}">Quản lý phiếu bảo hành</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="{{ route('listCustomerView') }}">
+                                    <i class="fa fa-users"></i> Quản lý khách hàng
+                                </a>
+                            </li>
                             <li><a><i class="fa fa-table"></i> Thống kê báo cáo <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ route('statistic') }}">Thống kê doanh thu</a></li>

@@ -148,6 +148,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin_access']], function (
     Route::post('/edit-payment', ['as' => 'editPayment', 'uses' => 'HinhThucThanhToanController@edit']);
 
     Route::get('/delete-payment/{id}', ['as' => 'deletePayment', 'uses' => 'HinhThucThanhToanController@delete']);
+
+//    khach hang
+    Route::get('/list-customer', ['as' => 'listCustomerView', 'uses' => 'UserController@index']);
+
+    Route::get('/delete-user/{id}', ['as' => 'deleteUser', 'uses' => 'UserController@delete']);
 });
 
 Route::get('/admin/login', ['as' => 'loginView', 'uses' => 'AuthController@index']);

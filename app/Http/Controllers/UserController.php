@@ -122,4 +122,19 @@ class UserController extends Controller
         $listOrder = HoaDon::where('user_id', Auth::guard('users')->user()->id)->orderBy('id', 'DESC')->get();
         return view('User.customer_order', compact('listOrder'));
     }
+
+    public function index()
+    {
+        $users = User::all();
+
+        return view('Admin.list_khach_hang', compact('users'));
+    }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->back();
+    }
 }
